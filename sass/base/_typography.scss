@@ -1,0 +1,26 @@
+body {
+  font-family: "Poppins", sans-serif;
+  font-size: 1.4rem;
+  font-style: italic;
+}
+
+.heading-large {
+  font-size: 10.4rem;
+  font-weight: 800;
+  line-height: 110%;
+  letter-spacing: -2px;
+}
+
+.heading-medium {
+  font-size: 3.2rem;
+  font-weight: 700;
+  //   letter-spacing: 1%;
+  font-style: normal;
+}
+
+.heading-small {
+  font-weight: 700;
+  letter-spacing: 3.5px;
+  font-style: normal;
+  text-transform: uppercase;
+}

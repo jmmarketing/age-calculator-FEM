@@ -1,0 +1,56 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,700;0,800;1,400;1,700;1,800&display=swap");
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  font-size: 1.4rem;
+  font-style: italic;
+}
+
+.heading-large {
+  font-size: 10.4rem;
+  font-weight: 800;
+  line-height: 110%;
+  letter-spacing: -2px;
+}
+
+.heading-medium {
+  font-size: 3.2rem;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.heading-small {
+  font-weight: 700;
+  letter-spacing: 3.5px;
+  font-style: normal;
+  text-transform: uppercase;
+}
+
+/*
+#### INCLUDE AS NEEDED###
+
+@import "layouts/ ***"
+
+@import "pages/ ***"
+
+@import "themes/ ***"
+
+@import "vendors/ ***"
+
+*//*# sourceMappingURL=main.css.map */
