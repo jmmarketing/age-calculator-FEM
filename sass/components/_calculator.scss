@@ -1,0 +1,26 @@
+.calculator {
+  background-color: $color-white;
+  border-radius: 24px 24px 200px 24px;
+  padding: 56px;
+
+  width: 840px;
+  height: 650px;
+
+  &__input-row {
+  }
+
+  &__divider {
+  }
+}
+
+.calculator__results {
+  &--group {
+    display: inline-flex;
+    gap: 8px;
+  }
+  &--number {
+    color: $color-purple;
+  }
+  &--text {
+  }
+}

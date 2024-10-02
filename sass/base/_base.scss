@@ -15,6 +15,11 @@ html {
 body {
   box-sizing: border-box;
   overflow-x: hidden;
+  background-color: $color-light-grey;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
 }
 
 main {
