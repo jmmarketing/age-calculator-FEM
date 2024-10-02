@@ -1,0 +1,25 @@
+//#### Import Abstracts Styling ####
+@import "abstracts/variables";
+@import "abstracts/mixins";
+@import "abstracts/functions";
+
+//#### Import Base Styling ####
+@import "base/base";
+@import "base/typography";
+@import "base/utilities";
+@import "base/animations";
+
+//#### Import Components Styling ####
+
+/*
+#### INCLUDE AS NEEDED###
+
+@import "layouts/ ***"
+
+@import "pages/ ***"
+
+@import "themes/ ***"
+
+@import "vendors/ ***"
+
+*/
