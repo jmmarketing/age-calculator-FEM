@@ -47,12 +47,21 @@ body {
   text-transform: uppercase;
 }
 
+.error-message {
+  color: hsl(0, 100%, 67%);
+  font-weight: 400;
+}
+
 .calculator {
   background-color: hsl(0, 0%, 100%);
   border-radius: 24px 24px 200px 24px;
   padding: 56px;
   width: 840px;
   height: 650px;
+}
+.calculator__input-row {
+  display: inline-flex;
+  gap: 32px;
 }
 .calculator__divider {
   position: relative;

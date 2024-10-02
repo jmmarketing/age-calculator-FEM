@@ -7,6 +7,8 @@
   height: 650px;
 
   &__input-row {
+    display: inline-flex;
+    gap: 32px;
   }
 
   &__divider {
