@@ -54,6 +54,28 @@ body {
   width: 840px;
   height: 650px;
 }
+.calculator__divider {
+  position: relative;
+  height: 96px;
+}
+.calculator__divider--line {
+  height: 1px;
+  background-color: hsl(0, 0%, 86%);
+  position: relative;
+  top: 48px;
+}
+.calculator__divider--icon {
+  width: 96px;
+  height: 96px;
+  background-color: hsl(259, 100%, 65%);
+  border-radius: 50%;
+  position: absolute;
+  right: 0;
+}
+.calculator__divider--icon svg {
+  transform: translate(50%, 50%);
+}
+
 .calculator__results--group {
   display: inline-flex;
   gap: 8px;
