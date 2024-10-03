@@ -45,11 +45,16 @@ body {
   letter-spacing: 3.5px;
   font-style: normal;
   text-transform: uppercase;
+  color: hsl(0, 1%, 44%);
+}
+.heading-small:has(~ input.invalid) {
+  color: hsl(0, 100%, 67%);
 }
 
 .error-message {
   color: hsl(0, 100%, 67%);
   font-weight: 400;
+  opacity: 0;
 }
 
 .calculator {
@@ -57,11 +62,38 @@ body {
   border-radius: 24px 24px 200px 24px;
   padding: 56px;
   width: 840px;
-  height: 650px;
 }
 .calculator__input-row {
   display: inline-flex;
   gap: 32px;
+}
+.calculator__input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.calculator__input {
+  width: 160px;
+  padding: 12px 24px;
+  border-radius: 8px;
+  border: 1px solid hsl(0, 0%, 86%);
+  font-size: 3.2rem;
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  color: hsl(0, 0%, 8%);
+  outline: none;
+  cursor: pointer;
+}
+.calculator__input:focus, .calculator__input:active, .calculator__input:hover {
+  border: 1px solid hsl(259, 100%, 65%);
+  transition: all 0.3s;
+}
+.calculator__input.invalid {
+  border: 1px solid hsl(0, 100%, 67%);
+}
+.calculator__input.invalid + .error-message {
+  opacity: 1;
+  transition: all 0.3s;
 }
 .calculator__divider {
   position: relative;
@@ -80,6 +112,10 @@ body {
   border-radius: 50%;
   position: absolute;
   right: 0;
+  cursor: pointer;
+}
+.calculator__divider--icon:hover {
+  background-color: hsl(0, 0%, 8%);
 }
 .calculator__divider--icon svg {
   transform: translate(50%, 50%);

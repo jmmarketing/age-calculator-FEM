@@ -4,11 +4,47 @@
   padding: 56px;
 
   width: 840px;
-  height: 650px;
+  //   height: 650px;
 
   &__input-row {
     display: inline-flex;
     gap: 32px;
+  }
+
+  &__input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  &__input {
+    width: 160px;
+    padding: 12px 24px;
+    border-radius: 8px;
+    border: 1px solid $color-light-grey;
+
+    font-size: 3.2rem;
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    color: $color-off-black;
+    outline: none;
+
+    cursor: pointer;
+
+    &:focus,
+    &:active,
+    &:hover {
+      border: 1px solid $color-purple;
+      transition: all 0.3s;
+    }
+
+    &.invalid {
+      border: 1px solid $color-error-red;
+      + .error-message {
+        opacity: 1;
+        transition: all 0.3s;
+      }
+    }
   }
 
   &__divider {
@@ -29,6 +65,12 @@
 
       position: absolute;
       right: 0;
+
+      cursor: pointer;
+
+      &:hover {
+        background-color: $color-off-black;
+      }
 
       svg {
         transform: translate(50%, 50%);

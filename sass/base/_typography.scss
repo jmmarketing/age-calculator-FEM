@@ -23,4 +23,9 @@ body {
   letter-spacing: 3.5px;
   font-style: normal;
   text-transform: uppercase;
+  color: $color-grey;
+
+  &:has(~ input.invalid) {
+    color: $color-error-red;
+  }
 }
