@@ -14,11 +14,15 @@ Your users should be able to:
 
 */
 
+const today = new Date();
+
 const submitButton = document.querySelector(".calculator__divider--icon");
 const ageInputs = document.querySelectorAll(".calculator__input");
 
 submitButton.addEventListener("click", function (e) {
   for (const input of ageInputs) {
-    input.classList.add("invalid");
+    input.classList.toggle("invalid");
+    console.dir(input);
+    console.log(today);
   }
 });
