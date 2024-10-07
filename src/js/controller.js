@@ -14,6 +14,8 @@ Your users should be able to:
 
 */
 
+import dayjs from "https://cdn.jsdelivr.net/npm/dayjs@1.11.13/+esm";
+
 const today = new Date();
 
 const submitButton = document.querySelector(".calculator__divider--icon");
