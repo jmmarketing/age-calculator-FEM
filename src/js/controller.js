@@ -1,4 +1,14 @@
+import "core-js/stable";
+import "regenerator-runtime/runtime";
+
 /*
+On Submit -
+- Each input is evaluated for its conditions (see below).
+- Input value is "false" then add invalid class
+- All inputs meet criteria then calculate difference.
+- Update DOM to reflect difference. 
+
+
 Your users should be able to: 
 
 - View an age in years, months, and days after submitting a valid date through the form
@@ -16,16 +26,14 @@ Convert to Days. Then calculate out. Own function.
 
 */
 /* NOTE: Date related operations will be our model */
-import dayjs from "https://cdn.jsdelivr.net/npm/dayjs@1.11.13/+esm";
 
 const rawDate = new Date();
 const today = {
   year: rawDate.getFullYear(),
   month: rawDate.getMonth() + 1,
   day: rawDate.getDate(),
+  ms: Date.now(),
 };
-
-// const day = dayjs();
 
 const birthday = {
   year: null,
@@ -33,27 +41,60 @@ const birthday = {
   day: null,
 };
 
+const daysOfMonth = new Map([
+  [1, 31],
+  [2, 29],
+  [3, 31],
+  [4, 30],
+  [5, 31],
+  [6, 30],
+  [7, 31],
+  [8, 31],
+  [9, 30],
+  [10, 31],
+  [11, 30],
+  [12, 31],
+]);
+
 function checkDate(object) {
   const { year, month, day } = object;
   console.log(object);
 }
 
+function clearInputs() {
+  ageInputs.forEach((input) => (input.value = ""));
+}
+
+function checkInputs() {}
+
 const submitButton = document.querySelector(".calculator__divider--icon");
 const ageInputs = document.querySelectorAll(".calculator__input");
+const years = document.querySelector('[data-type="years"]');
+const months = document.querySelector('[data-type="months"]');
+const days = document.querySelector('[data-type="days"]');
 
 submitButton.addEventListener("click", function (e) {
-  console.log(today);
-
-  for (const input of ageInputs) {
-    const val = Number(input.value);
+  ageInputs.forEach((input) => {
+    const val = Number.parseInt(+input.value);
     if (!Number.isInteger(val) || !input.value) {
       input.classList.add("invalid");
+      birthday[input.name] = null;
     } else {
-      input.classList.remove("invalid");
       birthday[input.name] = val;
+      input.classList.remove("invalid");
     }
-    console.dir(input);
-  }
+  });
 
-  checkDate(birthday);
+  console.log(birthday);
+
+  //   for (const input of ageInputs) {
+  //     const val = Number(input.value);
+  //     if (!Number.isInteger(val) || !input.value) {
+  //       input.classList.add("invalid");
+  //     } else {
+  //       input.classList.remove("invalid");
+  //       birthday[input.name] = val;
+  //     }
+  //     console.dir(input);
+  //   }
 });

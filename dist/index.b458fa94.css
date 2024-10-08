@@ -1,0 +1,136 @@
+@import "https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,700;0,800;1,400;1,700;1,800&display=swap";
+*, :before, :after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  box-sizing: border-box;
+  background-color: #dbdbdb;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-family: Poppins, sans-serif;
+  font-size: 1.4rem;
+  font-style: italic;
+  display: flex;
+  overflow-x: hidden;
+}
+
+.heading-large {
+  letter-spacing: -2px;
+  font-size: 10.4rem;
+  font-weight: 800;
+  line-height: 110%;
+}
+
+.heading-medium {
+  font-size: 3.2rem;
+  font-style: normal;
+  font-weight: 700;
+}
+
+.heading-small {
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+  color: #716f6f;
+  font-style: normal;
+  font-weight: 700;
+}
+
+.heading-small:has( ~ input.invalid) {
+  color: #ff5757;
+}
+
+.error-message {
+  color: #ff5757;
+  opacity: 0;
+  font-weight: 400;
+}
+
+.calculator {
+  background-color: #fff;
+  border-radius: 24px 24px 200px;
+  width: 840px;
+  padding: 56px;
+}
+
+.calculator__input-row {
+  gap: 32px;
+  display: inline-flex;
+}
+
+.calculator__input-group {
+  flex-direction: column;
+  gap: 8px;
+  display: flex;
+}
+
+.calculator__input {
+  color: #141414;
+  cursor: pointer;
+  border: 1px solid #dbdbdb;
+  border-radius: 8px;
+  outline: none;
+  width: 160px;
+  padding: 12px 24px;
+  font-family: Poppins, sans-serif;
+  font-size: 3.2rem;
+  font-weight: 700;
+}
+
+.calculator__input:focus, .calculator__input:active, .calculator__input:hover {
+  border: 1px solid #854cff;
+  transition: all .3s;
+}
+
+.calculator__input.invalid {
+  border: 1px solid #ff5757;
+}
+
+.calculator__input.invalid + .error-message {
+  opacity: 1;
+  transition: all .3s;
+}
+
+.calculator__divider {
+  height: 96px;
+  position: relative;
+}
+
+.calculator__divider--line {
+  background-color: #dbdbdb;
+  height: 1px;
+  position: relative;
+  top: 48px;
+}
+
+.calculator__divider--icon {
+  cursor: pointer;
+  background-color: #854cff;
+  border: #854cff;
+  border-radius: 50%;
+  width: 96px;
+  height: 96px;
+  position: absolute;
+  right: 0;
+}
+
+.calculator__divider--icon:hover {
+  background-color: #141414;
+}
+
+.calculator__results--group {
+  gap: 8px;
+  display: inline-flex;
+}
+
+.calculator__results--number {
+  color: #854cff;
+}
+/*# sourceMappingURL=index.b458fa94.css.map */
