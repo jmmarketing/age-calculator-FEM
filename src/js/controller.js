@@ -13,18 +13,49 @@ Your users should be able to:
 - **Bonus**: See the age numbers animate to their final number when the form is submitted
 
 */
-
+/* NOTE: Date related operations will be our model */
 import dayjs from "https://cdn.jsdelivr.net/npm/dayjs@1.11.13/+esm";
 
-const today = new Date();
+const rawDate = new Date();
+const today = {
+  year: rawDate.getFullYear(),
+  month: rawDate.getMonth() + 1,
+  day: rawDate.getDate(),
+};
+
+// const day = dayjs();
+
+const birthday = {
+  year,
+  month,
+  day,
+};
+
+function checkDate(object) {
+  const { year, month, day } = object;
+  console.log(year, month, day);
+}
 
 const submitButton = document.querySelector(".calculator__divider--icon");
 const ageInputs = document.querySelectorAll(".calculator__input");
 
 submitButton.addEventListener("click", function (e) {
+  console.log(today);
+  //   console.log("-----dayJs below ----");
+  //   console.log(`dayjs() --> ${day}`);
+  //   console.log(`dayjs(string) --> ${dayjs(today)}`);
+  //   console.log(`convert --> ${dayjs(today, "YYYY-MM-DD")}`);
+
   for (const input of ageInputs) {
-    input.classList.toggle("invalid");
+    console.log(input.value);
+    if (!Number.isInteger(Number(input.value)) || !input.value) {
+      input.classList.add("invalid");
+    } else {
+      input.classList.remove("invalid");
+      birthday[input.name] = input.value;
+    }
     console.dir(input);
-    console.log(today);
   }
+
+  checkDate(birthday);
 });
