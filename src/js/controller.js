@@ -12,6 +12,8 @@ Your users should be able to:
 - See hover and focus states for all interactive elements on the page
 - **Bonus**: See the age numbers animate to their final number when the form is submitted
 
+Convert to Days. Then calculate out. Own function.
+
 */
 /* NOTE: Date related operations will be our model */
 import dayjs from "https://cdn.jsdelivr.net/npm/dayjs@1.11.13/+esm";
@@ -26,14 +28,14 @@ const today = {
 // const day = dayjs();
 
 const birthday = {
-  year,
-  month,
-  day,
+  year: null,
+  month: null,
+  day: null,
 };
 
 function checkDate(object) {
   const { year, month, day } = object;
-  console.log(year, month, day);
+  console.log(object);
 }
 
 const submitButton = document.querySelector(".calculator__divider--icon");
@@ -41,18 +43,14 @@ const ageInputs = document.querySelectorAll(".calculator__input");
 
 submitButton.addEventListener("click", function (e) {
   console.log(today);
-  //   console.log("-----dayJs below ----");
-  //   console.log(`dayjs() --> ${day}`);
-  //   console.log(`dayjs(string) --> ${dayjs(today)}`);
-  //   console.log(`convert --> ${dayjs(today, "YYYY-MM-DD")}`);
 
   for (const input of ageInputs) {
-    console.log(input.value);
-    if (!Number.isInteger(Number(input.value)) || !input.value) {
+    const val = Number(input.value);
+    if (!Number.isInteger(val) || !input.value) {
       input.classList.add("invalid");
     } else {
       input.classList.remove("invalid");
-      birthday[input.name] = input.value;
+      birthday[input.name] = val;
     }
     console.dir(input);
   }

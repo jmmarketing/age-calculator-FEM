@@ -1,0 +1,29 @@
+{
+  "name": "age-calculator",
+  "version": "1.0.0",
+  "description": "Age calculator project for FrontendMentor",
+  "main": "controller.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jmmarketing/age-calculator-FEM.git"
+  },
+  "author": "Jeffrey McLean",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jmmarketing/age-calculator-FEM/issues"
+  },
+  "homepage": "https://github.com/jmmarketing/age-calculator-FEM#readme",
+  "devDependencies": {
+    "parcel": "^2.12.0"
+  },
+  "dependencies": {
+    "core-js": "^3.38.1",
+    "date-fns": "^4.1.0",
+    "regenerator-runtime": "^0.14.1"
+  }
+}
