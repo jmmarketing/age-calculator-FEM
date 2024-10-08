@@ -1,6 +1,8 @@
 import "core-js/stable";
 import "regenerator-runtime/runtime";
 
+import { isBefore } from "date-fns";
+
 /*
 On Submit -
 - Each input is evaluated for its conditions (see below).
@@ -56,7 +58,9 @@ const daysOfMonth = new Map([
   [12, 31],
 ]);
 
-function checkDate(object) {
+// END DATE MODEL
+
+function checkDate() {
   const { year, month, day } = object;
   console.log(object);
 }
@@ -77,6 +81,7 @@ const months = document.querySelector("#months-number");
 const days = document.querySelector("#days-number");
 
 submitButton.addEventListener("click", function (e) {
+  // First validation makes sure there is a number and not blank
   ageInputs.forEach((input) => {
     const val = Number.parseInt(+input.value);
     if (!Number.isInteger(val) || !input.value) {
@@ -88,6 +93,7 @@ submitButton.addEventListener("click", function (e) {
     }
   });
 
+  // Second pass of validation is field specific, but some requires other field info (like days for days in month validation)
   if (birthday.year > today.year) {
     yearInput.classList.add("invalid");
     return;
@@ -100,6 +106,16 @@ submitButton.addEventListener("click", function (e) {
 
   if (birthday.day <= 0 || birthday.day > daysOfMonth.get(birthday.month)) {
     dayInput.classList.add("invalid");
+    return;
+  }
+
+  if (
+    !isBefore(
+      `${birthday.year}/${birthday.month}/${birthday.day}`,
+      `${today.year}/${today.month}/${today.day}`
+    )
+  ) {
+    ageInputs.forEach((input) => input.classList.add("invalid"));
     return;
   }
 
