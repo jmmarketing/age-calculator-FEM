@@ -68,10 +68,13 @@ function clearInputs() {
 function checkInputs() {}
 
 const submitButton = document.querySelector(".calculator__divider--icon");
+const dayInput = document.querySelector("#day");
+const monthInput = document.querySelector("#month");
+const yearInput = document.querySelector("#year");
 const ageInputs = document.querySelectorAll(".calculator__input");
-const years = document.querySelector('[data-type="years"]');
-const months = document.querySelector('[data-type="months"]');
-const days = document.querySelector('[data-type="days"]');
+const years = document.querySelector("#years-number");
+const months = document.querySelector("#months-number");
+const days = document.querySelector("#days-number");
 
 submitButton.addEventListener("click", function (e) {
   ageInputs.forEach((input) => {
@@ -85,16 +88,21 @@ submitButton.addEventListener("click", function (e) {
     }
   });
 
-  console.log(birthday);
+  if (birthday.year > today.year) {
+    yearInput.classList.add("invalid");
+    return;
+  }
 
-  //   for (const input of ageInputs) {
-  //     const val = Number(input.value);
-  //     if (!Number.isInteger(val) || !input.value) {
-  //       input.classList.add("invalid");
-  //     } else {
-  //       input.classList.remove("invalid");
-  //       birthday[input.name] = val;
-  //     }
-  //     console.dir(input);
-  //   }
+  if (birthday.month < 1 || birthday.month > 12) {
+    monthInput.classList.add("invalid");
+    return;
+  }
+
+  if (birthday.day <= 0 || birthday.day > daysOfMonth.get(birthday.month)) {
+    dayInput.classList.add("invalid");
+    return;
+  }
+
+  // Check State of Birthday
+  if (Object.values(birthday).includes(null)) return;
 });
