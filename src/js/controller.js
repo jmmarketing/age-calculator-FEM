@@ -69,18 +69,7 @@ function clearInputs() {
   ageInputs.forEach((input) => (input.value = ""));
 }
 
-function checkInputs() {}
-
-const submitButton = document.querySelector(".calculator__divider--icon");
-const dayInput = document.querySelector("#day");
-const monthInput = document.querySelector("#month");
-const yearInput = document.querySelector("#year");
-const ageInputs = document.querySelectorAll(".calculator__input");
-const years = document.querySelector("#years-number");
-const months = document.querySelector("#months-number");
-const days = document.querySelector("#days-number");
-
-submitButton.addEventListener("click", function (e) {
+function validateInputs() {
   // First validation makes sure there is a number and not blank
   ageInputs.forEach((input) => {
     const val = Number.parseInt(+input.value);
@@ -96,6 +85,7 @@ submitButton.addEventListener("click", function (e) {
   // Second pass of validation is field specific, but some requires other field info (like days for days in month validation)
   if (birthday.year > today.year) {
     yearInput.classList.add("invalid");
+    birthday.year = null;
     return;
   }
 
@@ -106,6 +96,7 @@ submitButton.addEventListener("click", function (e) {
 
   if (birthday.day <= 0 || birthday.day > daysOfMonth.get(birthday.month)) {
     dayInput.classList.add("invalid");
+    birthday.day = null;
     return;
   }
 
@@ -118,7 +109,20 @@ submitButton.addEventListener("click", function (e) {
     ageInputs.forEach((input) => input.classList.add("invalid"));
     return;
   }
+}
 
+const submitButton = document.querySelector(".calculator__divider--icon");
+const dayInput = document.querySelector("#day");
+const monthInput = document.querySelector("#month");
+const yearInput = document.querySelector("#year");
+const ageInputs = document.querySelectorAll(".calculator__input");
+const years = document.querySelector("#years-number");
+const months = document.querySelector("#months-number");
+const days = document.querySelector("#days-number");
+
+submitButton.addEventListener("click", function (e) {
+  validateInputs();
+  console.log(birthday);
   // Check State of Birthday
   if (Object.values(birthday).includes(null)) return;
 });
