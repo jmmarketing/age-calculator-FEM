@@ -700,6 +700,12 @@ function calculateAge() {
     };
     console.log(realAge);
 }
+function displayAge() {
+    clearInputs();
+    yearsResult.textContent = realAge.years;
+    monthsResult.textContent = realAge.months;
+    daysResult.textContent = realAge.days;
+}
 function clearInputs() {
     ageInputs.forEach((input)=>input.value = "");
 }
@@ -749,6 +755,7 @@ submitButton.addEventListener("click", function(e) {
     // Check State of Birthday
     if (Object.values(birthday).includes(null)) return;
     calculateAge();
+    displayAge();
 });
 
 },{"core-js/modules/web.immediate.js":"49tUX","regenerator-runtime/runtime":"dXNgZ","date-fns":"dU215"}],"49tUX":[function(require,module,exports) {

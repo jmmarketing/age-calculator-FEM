@@ -98,6 +98,13 @@ function calculateAge() {
   console.log(realAge);
 }
 
+function displayAge() {
+  clearInputs();
+  yearsResult.textContent = realAge.years;
+  monthsResult.textContent = realAge.months;
+  daysResult.textContent = realAge.days;
+}
+
 function clearInputs() {
   ageInputs.forEach((input) => (input.value = ""));
 }
@@ -160,4 +167,5 @@ submitButton.addEventListener("click", function (e) {
   if (Object.values(birthday).includes(null)) return;
 
   calculateAge();
+  displayAge();
 });
