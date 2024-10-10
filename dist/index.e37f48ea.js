@@ -611,7 +611,7 @@ Your users should be able to:
 Convert to Days. Then calculate out. Own function.
 
 */ /* NOTE: Date related operations will be our model */ const rawDate = new Date();
-const today = {
+const rawToday = {
     year: rawDate.getFullYear(),
     month: rawDate.getMonth() + 1,
     day: rawDate.getDate(),
@@ -621,6 +621,11 @@ const birthday = {
     year: null,
     month: null,
     day: null
+};
+let realAge = {
+    years: null,
+    months: null,
+    days: null
 };
 const daysOfMonth = new Map([
     [
@@ -673,9 +678,27 @@ const daysOfMonth = new Map([
     ]
 ]);
 // END DATE MODEL
-function checkDate() {
-    const { year, month, day } = object;
-    console.log(object);
+function calculateAge() {
+    const userBirthday = `${birthday.year}-${birthday.month}-${birthday.day}`;
+    const today = `${rawToday.year}-${rawToday.month}-${rawToday.day}`;
+    // Using Date-FNS
+    const years = (0, _dateFns.differenceInYears)(today, userBirthday);
+    const months = (0, _dateFns.differenceInMonths)(today, userBirthday) % 12;
+    let lastMonthBirthday;
+    if (birthday.day > rawToday.day) {
+        console.log("This Fired");
+        lastMonthBirthday = `${rawToday.year}-${rawToday.month - 1}-${birthday.day}`;
+    } else lastMonthBirthday = `${rawToday.year}-${rawToday.month}-${birthday.day}`;
+    const days = (0, _dateFns.differenceInDays)(today, lastMonthBirthday);
+    console.log(today);
+    console.log(lastMonthBirthday);
+    console.log(days);
+    realAge = {
+        years,
+        months,
+        days
+    };
+    console.log(realAge);
 }
 function clearInputs() {
     ageInputs.forEach((input)=>input.value = "");
@@ -693,7 +716,7 @@ function validateInputs() {
         }
     });
     // Second pass of validation is field specific, but some requires other field info (like days for days in month validation)
-    if (birthday.year > today.year) {
+    if (birthday.year > rawToday.year) {
         yearInput.classList.add("invalid");
         birthday.year = null;
         return;
@@ -707,7 +730,7 @@ function validateInputs() {
         birthday.day = null;
         return;
     }
-    if (!(0, _dateFns.isBefore)(`${birthday.year}/${birthday.month}/${birthday.day}`, `${today.year}/${today.month}/${today.day}`)) {
+    if (!(0, _dateFns.isBefore)(`${birthday.year}/${birthday.month}/${birthday.day}`, `${rawToday.year}/${rawToday.month}/${rawToday.day}`)) {
         ageInputs.forEach((input)=>input.classList.add("invalid"));
         return;
     }
@@ -717,14 +740,15 @@ const dayInput = document.querySelector("#day");
 const monthInput = document.querySelector("#month");
 const yearInput = document.querySelector("#year");
 const ageInputs = document.querySelectorAll(".calculator__input");
-const years = document.querySelector("#years-number");
-const months = document.querySelector("#months-number");
-const days = document.querySelector("#days-number");
+const yearsResult = document.querySelector("#years-number");
+const monthsResult = document.querySelector("#months-number");
+const daysResult = document.querySelector("#days-number");
 submitButton.addEventListener("click", function(e) {
     validateInputs();
     console.log(birthday);
     // Check State of Birthday
     if (Object.values(birthday).includes(null)) return;
+    calculateAge();
 });
 
 },{"core-js/modules/web.immediate.js":"49tUX","regenerator-runtime/runtime":"dXNgZ","date-fns":"dU215"}],"49tUX":[function(require,module,exports) {
@@ -3058,7 +3082,102 @@ parcelHelpers.exportAll(_yearsToMonthsJs, exports);
 var _yearsToQuartersJs = require("./yearsToQuarters.js");
 parcelHelpers.exportAll(_yearsToQuartersJs, exports);
 
-},{"./add.js":false,"./addBusinessDays.js":false,"./addDays.js":false,"./addHours.js":false,"./addISOWeekYears.js":false,"./addMilliseconds.js":false,"./addMinutes.js":false,"./addMonths.js":false,"./addQuarters.js":false,"./addSeconds.js":false,"./addWeeks.js":false,"./addYears.js":false,"./areIntervalsOverlapping.js":false,"./clamp.js":false,"./closestIndexTo.js":false,"./closestTo.js":false,"./compareAsc.js":false,"./compareDesc.js":false,"./constructFrom.js":false,"./constructNow.js":false,"./daysToWeeks.js":false,"./differenceInBusinessDays.js":false,"./differenceInCalendarDays.js":false,"./differenceInCalendarISOWeekYears.js":false,"./differenceInCalendarISOWeeks.js":false,"./differenceInCalendarMonths.js":false,"./differenceInCalendarQuarters.js":false,"./differenceInCalendarWeeks.js":false,"./differenceInCalendarYears.js":false,"./differenceInDays.js":false,"./differenceInHours.js":false,"./differenceInISOWeekYears.js":false,"./differenceInMilliseconds.js":false,"./differenceInMinutes.js":false,"./differenceInMonths.js":false,"./differenceInQuarters.js":false,"./differenceInSeconds.js":false,"./differenceInWeeks.js":false,"./differenceInYears.js":false,"./eachDayOfInterval.js":false,"./eachHourOfInterval.js":false,"./eachMinuteOfInterval.js":false,"./eachMonthOfInterval.js":false,"./eachQuarterOfInterval.js":false,"./eachWeekOfInterval.js":false,"./eachWeekendOfInterval.js":false,"./eachWeekendOfMonth.js":false,"./eachWeekendOfYear.js":false,"./eachYearOfInterval.js":false,"./endOfDay.js":false,"./endOfDecade.js":false,"./endOfHour.js":false,"./endOfISOWeek.js":false,"./endOfISOWeekYear.js":false,"./endOfMinute.js":false,"./endOfMonth.js":false,"./endOfQuarter.js":false,"./endOfSecond.js":false,"./endOfToday.js":false,"./endOfTomorrow.js":false,"./endOfWeek.js":false,"./endOfYear.js":false,"./endOfYesterday.js":false,"./format.js":false,"./formatDistance.js":false,"./formatDistanceStrict.js":false,"./formatDistanceToNow.js":false,"./formatDistanceToNowStrict.js":false,"./formatDuration.js":false,"./formatISO.js":false,"./formatISO9075.js":false,"./formatISODuration.js":false,"./formatRFC3339.js":false,"./formatRFC7231.js":false,"./formatRelative.js":false,"./fromUnixTime.js":false,"./getDate.js":false,"./getDay.js":false,"./getDayOfYear.js":false,"./getDaysInMonth.js":false,"./getDaysInYear.js":false,"./getDecade.js":false,"./getDefaultOptions.js":false,"./getHours.js":false,"./getISODay.js":false,"./getISOWeek.js":false,"./getISOWeekYear.js":false,"./getISOWeeksInYear.js":false,"./getMilliseconds.js":false,"./getMinutes.js":false,"./getMonth.js":false,"./getOverlappingDaysInIntervals.js":false,"./getQuarter.js":false,"./getSeconds.js":false,"./getTime.js":false,"./getUnixTime.js":false,"./getWeek.js":false,"./getWeekOfMonth.js":false,"./getWeekYear.js":false,"./getWeeksInMonth.js":false,"./getYear.js":false,"./hoursToMilliseconds.js":false,"./hoursToMinutes.js":false,"./hoursToSeconds.js":false,"./interval.js":false,"./intervalToDuration.js":false,"./intlFormat.js":false,"./intlFormatDistance.js":false,"./isAfter.js":false,"./isBefore.js":"6AV3j","./isDate.js":false,"./isEqual.js":false,"./isExists.js":false,"./isFirstDayOfMonth.js":false,"./isFriday.js":false,"./isFuture.js":false,"./isLastDayOfMonth.js":false,"./isLeapYear.js":false,"./isMatch.js":false,"./isMonday.js":false,"./isPast.js":false,"./isSameDay.js":false,"./isSameHour.js":false,"./isSameISOWeek.js":false,"./isSameISOWeekYear.js":false,"./isSameMinute.js":false,"./isSameMonth.js":false,"./isSameQuarter.js":false,"./isSameSecond.js":false,"./isSameWeek.js":false,"./isSameYear.js":false,"./isSaturday.js":false,"./isSunday.js":false,"./isThisHour.js":false,"./isThisISOWeek.js":false,"./isThisMinute.js":false,"./isThisMonth.js":false,"./isThisQuarter.js":false,"./isThisSecond.js":false,"./isThisWeek.js":false,"./isThisYear.js":false,"./isThursday.js":false,"./isToday.js":false,"./isTomorrow.js":false,"./isTuesday.js":false,"./isValid.js":false,"./isWednesday.js":false,"./isWeekend.js":false,"./isWithinInterval.js":false,"./isYesterday.js":false,"./lastDayOfDecade.js":false,"./lastDayOfISOWeek.js":false,"./lastDayOfISOWeekYear.js":false,"./lastDayOfMonth.js":false,"./lastDayOfQuarter.js":false,"./lastDayOfWeek.js":false,"./lastDayOfYear.js":false,"./lightFormat.js":false,"./max.js":false,"./milliseconds.js":false,"./millisecondsToHours.js":false,"./millisecondsToMinutes.js":false,"./millisecondsToSeconds.js":false,"./min.js":false,"./minutesToHours.js":false,"./minutesToMilliseconds.js":false,"./minutesToSeconds.js":false,"./monthsToQuarters.js":false,"./monthsToYears.js":false,"./nextDay.js":false,"./nextFriday.js":false,"./nextMonday.js":false,"./nextSaturday.js":false,"./nextSunday.js":false,"./nextThursday.js":false,"./nextTuesday.js":false,"./nextWednesday.js":false,"./parse.js":false,"./parseISO.js":false,"./parseJSON.js":false,"./previousDay.js":false,"./previousFriday.js":false,"./previousMonday.js":false,"./previousSaturday.js":false,"./previousSunday.js":false,"./previousThursday.js":false,"./previousTuesday.js":false,"./previousWednesday.js":false,"./quartersToMonths.js":false,"./quartersToYears.js":false,"./roundToNearestHours.js":false,"./roundToNearestMinutes.js":false,"./secondsToHours.js":false,"./secondsToMilliseconds.js":false,"./secondsToMinutes.js":false,"./set.js":false,"./setDate.js":false,"./setDay.js":false,"./setDayOfYear.js":false,"./setDefaultOptions.js":false,"./setHours.js":false,"./setISODay.js":false,"./setISOWeek.js":false,"./setISOWeekYear.js":false,"./setMilliseconds.js":false,"./setMinutes.js":false,"./setMonth.js":false,"./setQuarter.js":false,"./setSeconds.js":false,"./setWeek.js":false,"./setWeekYear.js":false,"./setYear.js":false,"./startOfDay.js":false,"./startOfDecade.js":false,"./startOfHour.js":false,"./startOfISOWeek.js":false,"./startOfISOWeekYear.js":false,"./startOfMinute.js":false,"./startOfMonth.js":false,"./startOfQuarter.js":false,"./startOfSecond.js":false,"./startOfToday.js":false,"./startOfTomorrow.js":false,"./startOfWeek.js":false,"./startOfWeekYear.js":false,"./startOfYear.js":false,"./startOfYesterday.js":false,"./sub.js":false,"./subBusinessDays.js":false,"./subDays.js":false,"./subHours.js":false,"./subISOWeekYears.js":false,"./subMilliseconds.js":false,"./subMinutes.js":false,"./subMonths.js":false,"./subQuarters.js":false,"./subSeconds.js":false,"./subWeeks.js":false,"./subYears.js":false,"./toDate.js":false,"./transpose.js":false,"./weeksToDays.js":false,"./yearsToDays.js":false,"./yearsToMonths.js":false,"./yearsToQuarters.js":false,"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"hNMdA":[function(require,module,exports) {
+},{"./add.js":false,"./addBusinessDays.js":false,"./addDays.js":false,"./addHours.js":false,"./addISOWeekYears.js":false,"./addMilliseconds.js":false,"./addMinutes.js":false,"./addMonths.js":false,"./addQuarters.js":false,"./addSeconds.js":false,"./addWeeks.js":false,"./addYears.js":false,"./areIntervalsOverlapping.js":false,"./clamp.js":false,"./closestIndexTo.js":false,"./closestTo.js":false,"./compareAsc.js":false,"./compareDesc.js":false,"./constructFrom.js":false,"./constructNow.js":false,"./daysToWeeks.js":false,"./differenceInBusinessDays.js":false,"./differenceInCalendarDays.js":false,"./differenceInCalendarISOWeekYears.js":false,"./differenceInCalendarISOWeeks.js":false,"./differenceInCalendarMonths.js":false,"./differenceInCalendarQuarters.js":false,"./differenceInCalendarWeeks.js":false,"./differenceInCalendarYears.js":false,"./differenceInDays.js":"fJoFi","./differenceInHours.js":false,"./differenceInISOWeekYears.js":false,"./differenceInMilliseconds.js":false,"./differenceInMinutes.js":false,"./differenceInMonths.js":"i3gFX","./differenceInQuarters.js":false,"./differenceInSeconds.js":false,"./differenceInWeeks.js":false,"./differenceInYears.js":"iFe68","./eachDayOfInterval.js":false,"./eachHourOfInterval.js":false,"./eachMinuteOfInterval.js":false,"./eachMonthOfInterval.js":false,"./eachQuarterOfInterval.js":false,"./eachWeekOfInterval.js":false,"./eachWeekendOfInterval.js":false,"./eachWeekendOfMonth.js":false,"./eachWeekendOfYear.js":false,"./eachYearOfInterval.js":false,"./endOfDay.js":false,"./endOfDecade.js":false,"./endOfHour.js":false,"./endOfISOWeek.js":false,"./endOfISOWeekYear.js":false,"./endOfMinute.js":false,"./endOfMonth.js":false,"./endOfQuarter.js":false,"./endOfSecond.js":false,"./endOfToday.js":false,"./endOfTomorrow.js":false,"./endOfWeek.js":false,"./endOfYear.js":false,"./endOfYesterday.js":false,"./format.js":false,"./formatDistance.js":false,"./formatDistanceStrict.js":false,"./formatDistanceToNow.js":false,"./formatDistanceToNowStrict.js":false,"./formatDuration.js":false,"./formatISO.js":false,"./formatISO9075.js":false,"./formatISODuration.js":false,"./formatRFC3339.js":false,"./formatRFC7231.js":false,"./formatRelative.js":false,"./fromUnixTime.js":false,"./getDate.js":false,"./getDay.js":false,"./getDayOfYear.js":false,"./getDaysInMonth.js":false,"./getDaysInYear.js":false,"./getDecade.js":false,"./getDefaultOptions.js":false,"./getHours.js":false,"./getISODay.js":false,"./getISOWeek.js":false,"./getISOWeekYear.js":false,"./getISOWeeksInYear.js":false,"./getMilliseconds.js":false,"./getMinutes.js":false,"./getMonth.js":false,"./getOverlappingDaysInIntervals.js":false,"./getQuarter.js":false,"./getSeconds.js":false,"./getTime.js":false,"./getUnixTime.js":false,"./getWeek.js":false,"./getWeekOfMonth.js":false,"./getWeekYear.js":false,"./getWeeksInMonth.js":false,"./getYear.js":false,"./hoursToMilliseconds.js":false,"./hoursToMinutes.js":false,"./hoursToSeconds.js":false,"./interval.js":false,"./intervalToDuration.js":false,"./intlFormat.js":false,"./intlFormatDistance.js":false,"./isAfter.js":false,"./isBefore.js":"6AV3j","./isDate.js":false,"./isEqual.js":false,"./isExists.js":false,"./isFirstDayOfMonth.js":false,"./isFriday.js":false,"./isFuture.js":false,"./isLastDayOfMonth.js":false,"./isLeapYear.js":false,"./isMatch.js":false,"./isMonday.js":false,"./isPast.js":false,"./isSameDay.js":false,"./isSameHour.js":false,"./isSameISOWeek.js":false,"./isSameISOWeekYear.js":false,"./isSameMinute.js":false,"./isSameMonth.js":false,"./isSameQuarter.js":false,"./isSameSecond.js":false,"./isSameWeek.js":false,"./isSameYear.js":false,"./isSaturday.js":false,"./isSunday.js":false,"./isThisHour.js":false,"./isThisISOWeek.js":false,"./isThisMinute.js":false,"./isThisMonth.js":false,"./isThisQuarter.js":false,"./isThisSecond.js":false,"./isThisWeek.js":false,"./isThisYear.js":false,"./isThursday.js":false,"./isToday.js":false,"./isTomorrow.js":false,"./isTuesday.js":false,"./isValid.js":false,"./isWednesday.js":false,"./isWeekend.js":false,"./isWithinInterval.js":false,"./isYesterday.js":false,"./lastDayOfDecade.js":false,"./lastDayOfISOWeek.js":false,"./lastDayOfISOWeekYear.js":false,"./lastDayOfMonth.js":false,"./lastDayOfQuarter.js":false,"./lastDayOfWeek.js":false,"./lastDayOfYear.js":false,"./lightFormat.js":false,"./max.js":false,"./milliseconds.js":false,"./millisecondsToHours.js":false,"./millisecondsToMinutes.js":false,"./millisecondsToSeconds.js":false,"./min.js":false,"./minutesToHours.js":false,"./minutesToMilliseconds.js":false,"./minutesToSeconds.js":false,"./monthsToQuarters.js":false,"./monthsToYears.js":false,"./nextDay.js":false,"./nextFriday.js":false,"./nextMonday.js":false,"./nextSaturday.js":false,"./nextSunday.js":false,"./nextThursday.js":false,"./nextTuesday.js":false,"./nextWednesday.js":false,"./parse.js":false,"./parseISO.js":false,"./parseJSON.js":false,"./previousDay.js":false,"./previousFriday.js":false,"./previousMonday.js":false,"./previousSaturday.js":false,"./previousSunday.js":false,"./previousThursday.js":false,"./previousTuesday.js":false,"./previousWednesday.js":false,"./quartersToMonths.js":false,"./quartersToYears.js":false,"./roundToNearestHours.js":false,"./roundToNearestMinutes.js":false,"./secondsToHours.js":false,"./secondsToMilliseconds.js":false,"./secondsToMinutes.js":false,"./set.js":false,"./setDate.js":false,"./setDay.js":false,"./setDayOfYear.js":false,"./setDefaultOptions.js":false,"./setHours.js":false,"./setISODay.js":false,"./setISOWeek.js":false,"./setISOWeekYear.js":false,"./setMilliseconds.js":false,"./setMinutes.js":false,"./setMonth.js":false,"./setQuarter.js":false,"./setSeconds.js":false,"./setWeek.js":false,"./setWeekYear.js":false,"./setYear.js":false,"./startOfDay.js":false,"./startOfDecade.js":false,"./startOfHour.js":false,"./startOfISOWeek.js":false,"./startOfISOWeekYear.js":false,"./startOfMinute.js":false,"./startOfMonth.js":false,"./startOfQuarter.js":false,"./startOfSecond.js":false,"./startOfToday.js":false,"./startOfTomorrow.js":false,"./startOfWeek.js":false,"./startOfWeekYear.js":false,"./startOfYear.js":false,"./startOfYesterday.js":false,"./sub.js":false,"./subBusinessDays.js":false,"./subDays.js":false,"./subHours.js":false,"./subISOWeekYears.js":false,"./subMilliseconds.js":false,"./subMinutes.js":false,"./subMonths.js":false,"./subQuarters.js":false,"./subSeconds.js":false,"./subWeeks.js":false,"./subYears.js":false,"./toDate.js":false,"./transpose.js":false,"./weeksToDays.js":false,"./yearsToDays.js":false,"./yearsToMonths.js":false,"./yearsToQuarters.js":false,"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"fgd9M":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+/**
+ * @name compareAsc
+ * @category Common Helpers
+ * @summary Compare the two dates and return -1, 0 or 1.
+ *
+ * @description
+ * Compare the two dates and return 1 if the first date is after the second,
+ * -1 if the first date is before the second or 0 if dates are equal.
+ *
+ * @param dateLeft - The first date to compare
+ * @param dateRight - The second date to compare
+ *
+ * @returns The result of the comparison
+ *
+ * @example
+ * // Compare 11 February 1987 and 10 July 1989:
+ * const result = compareAsc(new Date(1987, 1, 11), new Date(1989, 6, 10))
+ * //=> -1
+ *
+ * @example
+ * // Sort the array of dates:
+ * const result = [
+ *   new Date(1995, 6, 2),
+ *   new Date(1987, 1, 11),
+ *   new Date(1989, 6, 10)
+ * ].sort(compareAsc)
+ * //=> [
+ * //   Wed Feb 11 1987 00:00:00,
+ * //   Mon Jul 10 1989 00:00:00,
+ * //   Sun Jul 02 1995 00:00:00
+ * // ]
+ */ parcelHelpers.export(exports, "compareAsc", ()=>compareAsc);
+var _toDateJs = require("./toDate.js");
+function compareAsc(dateLeft, dateRight) {
+    const diff = +(0, _toDateJs.toDate)(dateLeft) - +(0, _toDateJs.toDate)(dateRight);
+    if (diff < 0) return -1;
+    else if (diff > 0) return 1;
+    // Return 0 if diff is 0; return NaN if diff is NaN
+    return diff;
+}
+// Fallback for modularized imports:
+exports.default = compareAsc;
+
+},{"./toDate.js":"actWA","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"actWA":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+/**
+ * @name toDate
+ * @category Common Helpers
+ * @summary Convert the given argument to an instance of Date.
+ *
+ * @description
+ * Convert the given argument to an instance of Date.
+ *
+ * If the argument is an instance of Date, the function returns its clone.
+ *
+ * If the argument is a number, it is treated as a timestamp.
+ *
+ * If the argument is none of the above, the function returns Invalid Date.
+ *
+ * Starting from v3.7.0, it clones a date using `[Symbol.for("constructDateFrom")]`
+ * enabling to transfer extra properties from the reference date to the new date.
+ * It's useful for extensions like [`TZDate`](https://github.com/date-fns/tz)
+ * that accept a time zone as a constructor argument.
+ *
+ * **Note**: *all* Date arguments passed to any *date-fns* function is processed by `toDate`.
+ *
+ * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
+ * @typeParam ResultDate - The result `Date` type, it is the type returned from the context function if it is passed, or inferred from the arguments.
+ *
+ * @param argument - The value to convert
+ *
+ * @returns The parsed date in the local time zone
+ *
+ * @example
+ * // Clone the date:
+ * const result = toDate(new Date(2014, 1, 11, 11, 30, 30))
+ * //=> Tue Feb 11 2014 11:30:30
+ *
+ * @example
+ * // Convert the timestamp to date:
+ * const result = toDate(1392098430000)
+ * //=> Tue Feb 11 2014 11:30:30
+ */ parcelHelpers.export(exports, "toDate", ()=>toDate);
+var _constructFromJs = require("./constructFrom.js");
+function toDate(argument, context) {
+    // [TODO] Get rid of `toDate` or `constructFrom`?
+    return (0, _constructFromJs.constructFrom)(context || argument, argument);
+}
+// Fallback for modularized imports:
+exports.default = toDate;
+
+},{"./constructFrom.js":"hNMdA","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"hNMdA":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 /**
@@ -3207,7 +3326,485 @@ exports.export = function(dest, destName, get) {
     });
 };
 
-},{}],"6AV3j":[function(require,module,exports) {
+},{}],"dvya7":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+/**
+ * The {@link differenceInCalendarDays} function options.
+ */ /**
+ * @name differenceInCalendarDays
+ * @category Day Helpers
+ * @summary Get the number of calendar days between the given dates.
+ *
+ * @description
+ * Get the number of calendar days between the given dates. This means that the times are removed
+ * from the dates and then the difference in days is calculated.
+ *
+ * @param laterDate - The later date
+ * @param earlierDate - The earlier date
+ * @param options - The options object
+ *
+ * @returns The number of calendar days
+ *
+ * @example
+ * // How many calendar days are between
+ * // 2 July 2011 23:00:00 and 2 July 2012 00:00:00?
+ * const result = differenceInCalendarDays(
+ *   new Date(2012, 6, 2, 0, 0),
+ *   new Date(2011, 6, 2, 23, 0)
+ * )
+ * //=> 366
+ * // How many calendar days are between
+ * // 2 July 2011 23:59:00 and 3 July 2011 00:01:00?
+ * const result = differenceInCalendarDays(
+ *   new Date(2011, 6, 3, 0, 1),
+ *   new Date(2011, 6, 2, 23, 59)
+ * )
+ * //=> 1
+ */ parcelHelpers.export(exports, "differenceInCalendarDays", ()=>differenceInCalendarDays);
+var _getTimezoneOffsetInMillisecondsJs = require("./_lib/getTimezoneOffsetInMilliseconds.js");
+var _normalizeDatesJs = require("./_lib/normalizeDates.js");
+var _constantsJs = require("./constants.js");
+var _startOfDayJs = require("./startOfDay.js");
+function differenceInCalendarDays(laterDate, earlierDate, options) {
+    const [laterDate_, earlierDate_] = (0, _normalizeDatesJs.normalizeDates)(options?.in, laterDate, earlierDate);
+    const laterStartOfDay = (0, _startOfDayJs.startOfDay)(laterDate_);
+    const earlierStartOfDay = (0, _startOfDayJs.startOfDay)(earlierDate_);
+    const laterTimestamp = +laterStartOfDay - (0, _getTimezoneOffsetInMillisecondsJs.getTimezoneOffsetInMilliseconds)(laterStartOfDay);
+    const earlierTimestamp = +earlierStartOfDay - (0, _getTimezoneOffsetInMillisecondsJs.getTimezoneOffsetInMilliseconds)(earlierStartOfDay);
+    // Round the number of days to the nearest integer because the number of
+    // milliseconds in a day is not constant (e.g. it's different in the week of
+    // the daylight saving time clock shift).
+    return Math.round((laterTimestamp - earlierTimestamp) / (0, _constantsJs.millisecondsInDay));
+}
+// Fallback for modularized imports:
+exports.default = differenceInCalendarDays;
+
+},{"./_lib/getTimezoneOffsetInMilliseconds.js":"ke6Rl","./_lib/normalizeDates.js":"aCztF","./constants.js":"1vXXw","./startOfDay.js":"iJAa5","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"ke6Rl":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+/**
+ * Google Chrome as of 67.0.3396.87 introduced timezones with offset that includes seconds.
+ * They usually appear for dates that denote time before the timezones were introduced
+ * (e.g. for 'Europe/Prague' timezone the offset is GMT+00:57:44 before 1 October 1891
+ * and GMT+01:00:00 after that date)
+ *
+ * Date#getTimezoneOffset returns the offset in minutes and would return 57 for the example above,
+ * which would lead to incorrect calculations.
+ *
+ * This function returns the timezone offset in milliseconds that takes seconds in account.
+ */ parcelHelpers.export(exports, "getTimezoneOffsetInMilliseconds", ()=>getTimezoneOffsetInMilliseconds);
+var _toDateJs = require("../toDate.js");
+function getTimezoneOffsetInMilliseconds(date) {
+    const _date = (0, _toDateJs.toDate)(date);
+    const utcDate = new Date(Date.UTC(_date.getFullYear(), _date.getMonth(), _date.getDate(), _date.getHours(), _date.getMinutes(), _date.getSeconds(), _date.getMilliseconds()));
+    utcDate.setUTCFullYear(_date.getFullYear());
+    return +date - +utcDate;
+}
+
+},{"../toDate.js":"actWA","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"aCztF":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "normalizeDates", ()=>normalizeDates);
+var _constructFromJs = require("../constructFrom.js");
+function normalizeDates(context, ...dates) {
+    const normalize = (0, _constructFromJs.constructFrom).bind(null, context || dates.find((date)=>typeof date === "object"));
+    return dates.map(normalize);
+}
+
+},{"../constructFrom.js":"hNMdA","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"iJAa5":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+/**
+ * The {@link startOfDay} function options.
+ */ /**
+ * @name startOfDay
+ * @category Day Helpers
+ * @summary Return the start of a day for the given date.
+ *
+ * @description
+ * Return the start of a day for the given date.
+ * The result will be in the local timezone.
+ *
+ * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
+ * @typeParam ResultDate - The result `Date` type, it is the type returned from the context function if it is passed, or inferred from the arguments.
+ *
+ * @param date - The original date
+ * @param options - The options
+ *
+ * @returns The start of a day
+ *
+ * @example
+ * // The start of a day for 2 September 2014 11:55:00:
+ * const result = startOfDay(new Date(2014, 8, 2, 11, 55, 0))
+ * //=> Tue Sep 02 2014 00:00:00
+ */ parcelHelpers.export(exports, "startOfDay", ()=>startOfDay);
+var _toDateJs = require("./toDate.js");
+function startOfDay(date, options) {
+    const _date = (0, _toDateJs.toDate)(date, options?.in);
+    _date.setHours(0, 0, 0, 0);
+    return _date;
+}
+// Fallback for modularized imports:
+exports.default = startOfDay;
+
+},{"./toDate.js":"actWA","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"21Qeg":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+/**
+ * The {@link differenceInCalendarMonths} function options.
+ */ /**
+ * @name differenceInCalendarMonths
+ * @category Month Helpers
+ * @summary Get the number of calendar months between the given dates.
+ *
+ * @description
+ * Get the number of calendar months between the given dates.
+ *
+ * @param laterDate - The later date
+ * @param earlierDate - The earlier date
+ * @param options - An object with options
+ *
+ * @returns The number of calendar months
+ *
+ * @example
+ * // How many calendar months are between 31 January 2014 and 1 September 2014?
+ * const result = differenceInCalendarMonths(
+ *   new Date(2014, 8, 1),
+ *   new Date(2014, 0, 31)
+ * )
+ * //=> 8
+ */ parcelHelpers.export(exports, "differenceInCalendarMonths", ()=>differenceInCalendarMonths);
+var _normalizeDatesJs = require("./_lib/normalizeDates.js");
+function differenceInCalendarMonths(laterDate, earlierDate, options) {
+    const [laterDate_, earlierDate_] = (0, _normalizeDatesJs.normalizeDates)(options?.in, laterDate, earlierDate);
+    const yearsDiff = laterDate_.getFullYear() - earlierDate_.getFullYear();
+    const monthsDiff = laterDate_.getMonth() - earlierDate_.getMonth();
+    return yearsDiff * 12 + monthsDiff;
+}
+// Fallback for modularized imports:
+exports.default = differenceInCalendarMonths;
+
+},{"./_lib/normalizeDates.js":"aCztF","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"e0VtU":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+/**
+ * The {@link differenceInCalendarYears} function options.
+ */ /**
+ * @name differenceInCalendarYears
+ * @category Year Helpers
+ * @summary Get the number of calendar years between the given dates.
+ *
+ * @description
+ * Get the number of calendar years between the given dates.
+ *
+ * @param laterDate - The later date
+ * @param earlierDate - The earlier date
+ * @param options - An object with options
+
+ * @returns The number of calendar years
+ *
+ * @example
+ * // How many calendar years are between 31 December 2013 and 11 February 2015?
+ * const result = differenceInCalendarYears(
+ *   new Date(2015, 1, 11),
+ *   new Date(2013, 11, 31)
+ * );
+ * //=> 2
+ */ parcelHelpers.export(exports, "differenceInCalendarYears", ()=>differenceInCalendarYears);
+var _normalizeDatesJs = require("./_lib/normalizeDates.js");
+function differenceInCalendarYears(laterDate, earlierDate, options) {
+    const [laterDate_, earlierDate_] = (0, _normalizeDatesJs.normalizeDates)(options?.in, laterDate, earlierDate);
+    return laterDate_.getFullYear() - earlierDate_.getFullYear();
+}
+// Fallback for modularized imports:
+exports.default = differenceInCalendarYears;
+
+},{"./_lib/normalizeDates.js":"aCztF","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"fJoFi":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+/**
+ * The {@link differenceInDays} function options.
+ */ /**
+ * @name differenceInDays
+ * @category Day Helpers
+ * @summary Get the number of full days between the given dates.
+ *
+ * @description
+ * Get the number of full day periods between two dates. Fractional days are
+ * truncated towards zero.
+ *
+ * One "full day" is the distance between a local time in one day to the same
+ * local time on the next or previous day. A full day can sometimes be less than
+ * or more than 24 hours if a daylight savings change happens between two dates.
+ *
+ * To ignore DST and only measure exact 24-hour periods, use this instead:
+ * `Math.trunc(differenceInHours(dateLeft, dateRight)/24)|0`.
+ *
+ * @param laterDate - The later date
+ * @param earlierDate - The earlier date
+ * @param options - An object with options
+ *
+ * @returns The number of full days according to the local timezone
+ *
+ * @example
+ * // How many full days are between
+ * // 2 July 2011 23:00:00 and 2 July 2012 00:00:00?
+ * const result = differenceInDays(
+ *   new Date(2012, 6, 2, 0, 0),
+ *   new Date(2011, 6, 2, 23, 0)
+ * )
+ * //=> 365
+ *
+ * @example
+ * // How many full days are between
+ * // 2 July 2011 23:59:00 and 3 July 2011 00:01:00?
+ * const result = differenceInDays(
+ *   new Date(2011, 6, 3, 0, 1),
+ *   new Date(2011, 6, 2, 23, 59)
+ * )
+ * //=> 0
+ *
+ * @example
+ * // How many full days are between
+ * // 1 March 2020 0:00 and 1 June 2020 0:00 ?
+ * // Note: because local time is used, the
+ * // result will always be 92 days, even in
+ * // time zones where DST starts and the
+ * // period has only 92*24-1 hours.
+ * const result = differenceInDays(
+ *   new Date(2020, 5, 1),
+ *   new Date(2020, 2, 1)
+ * )
+ * //=> 92
+ */ parcelHelpers.export(exports, "differenceInDays", ()=>differenceInDays);
+var _normalizeDatesJs = require("./_lib/normalizeDates.js");
+var _differenceInCalendarDaysJs = require("./differenceInCalendarDays.js");
+function differenceInDays(laterDate, earlierDate, options) {
+    const [laterDate_, earlierDate_] = (0, _normalizeDatesJs.normalizeDates)(options?.in, laterDate, earlierDate);
+    const sign = compareLocalAsc(laterDate_, earlierDate_);
+    const difference = Math.abs((0, _differenceInCalendarDaysJs.differenceInCalendarDays)(laterDate_, earlierDate_));
+    laterDate_.setDate(laterDate_.getDate() - sign * difference);
+    // Math.abs(diff in full days - diff in calendar days) === 1 if last calendar day is not full
+    // If so, result must be decreased by 1 in absolute value
+    const isLastDayNotFull = Number(compareLocalAsc(laterDate_, earlierDate_) === -sign);
+    const result = sign * (difference - isLastDayNotFull);
+    // Prevent negative zero
+    return result === 0 ? 0 : result;
+}
+// Like `compareAsc` but uses local time not UTC, which is needed
+// for accurate equality comparisons of UTC timestamps that end up
+// having the same representation in local time, e.g. one hour before
+// DST ends vs. the instant that DST ends.
+function compareLocalAsc(laterDate, earlierDate) {
+    const diff = laterDate.getFullYear() - earlierDate.getFullYear() || laterDate.getMonth() - earlierDate.getMonth() || laterDate.getDate() - earlierDate.getDate() || laterDate.getHours() - earlierDate.getHours() || laterDate.getMinutes() - earlierDate.getMinutes() || laterDate.getSeconds() - earlierDate.getSeconds() || laterDate.getMilliseconds() - earlierDate.getMilliseconds();
+    if (diff < 0) return -1;
+    if (diff > 0) return 1;
+    // Return 0 if diff is 0; return NaN if diff is NaN
+    return diff;
+}
+// Fallback for modularized imports:
+exports.default = differenceInDays;
+
+},{"./_lib/normalizeDates.js":"aCztF","./differenceInCalendarDays.js":"dvya7","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"i3gFX":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+/**
+ * The {@link differenceInMonths} function options.
+ */ /**
+ * @name differenceInMonths
+ * @category Month Helpers
+ * @summary Get the number of full months between the given dates.
+ *
+ * @param laterDate - The later date
+ * @param earlierDate - The earlier date
+ * @param options - An object with options
+ *
+ * @returns The number of full months
+ *
+ * @example
+ * // How many full months are between 31 January 2014 and 1 September 2014?
+ * const result = differenceInMonths(new Date(2014, 8, 1), new Date(2014, 0, 31))
+ * //=> 7
+ */ parcelHelpers.export(exports, "differenceInMonths", ()=>differenceInMonths);
+var _normalizeDatesJs = require("./_lib/normalizeDates.js");
+var _compareAscJs = require("./compareAsc.js");
+var _differenceInCalendarMonthsJs = require("./differenceInCalendarMonths.js");
+var _isLastDayOfMonthJs = require("./isLastDayOfMonth.js");
+function differenceInMonths(laterDate, earlierDate, options) {
+    const [laterDate_, workingLaterDate, earlierDate_] = (0, _normalizeDatesJs.normalizeDates)(options?.in, laterDate, laterDate, earlierDate);
+    const sign = (0, _compareAscJs.compareAsc)(workingLaterDate, earlierDate_);
+    const difference = Math.abs((0, _differenceInCalendarMonthsJs.differenceInCalendarMonths)(workingLaterDate, earlierDate_));
+    if (difference < 1) return 0;
+    if (workingLaterDate.getMonth() === 1 && workingLaterDate.getDate() > 27) workingLaterDate.setDate(30);
+    workingLaterDate.setMonth(workingLaterDate.getMonth() - sign * difference);
+    let isLastMonthNotFull = (0, _compareAscJs.compareAsc)(workingLaterDate, earlierDate_) === -sign;
+    if ((0, _isLastDayOfMonthJs.isLastDayOfMonth)(laterDate_) && difference === 1 && (0, _compareAscJs.compareAsc)(laterDate_, earlierDate_) === 1) isLastMonthNotFull = false;
+    const result = sign * (difference - +isLastMonthNotFull);
+    return result === 0 ? 0 : result;
+}
+// Fallback for modularized imports:
+exports.default = differenceInMonths;
+
+},{"./_lib/normalizeDates.js":"aCztF","./compareAsc.js":"fgd9M","./differenceInCalendarMonths.js":"21Qeg","./isLastDayOfMonth.js":"9dpYu","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"9dpYu":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+/**
+ * @name isLastDayOfMonth
+ * @category Month Helpers
+ * @summary Is the given date the last day of a month?
+ *
+ * @description
+ * Is the given date the last day of a month?
+ *
+ * @param date - The date to check
+ * @param options - An object with options
+ *
+ * @returns The date is the last day of a month
+ *
+ * @example
+ * // Is 28 February 2014 the last day of a month?
+ * const result = isLastDayOfMonth(new Date(2014, 1, 28))
+ * //=> true
+ */ parcelHelpers.export(exports, "isLastDayOfMonth", ()=>isLastDayOfMonth);
+var _endOfDayJs = require("./endOfDay.js");
+var _endOfMonthJs = require("./endOfMonth.js");
+var _toDateJs = require("./toDate.js");
+function isLastDayOfMonth(date, options) {
+    const _date = (0, _toDateJs.toDate)(date, options?.in);
+    return +(0, _endOfDayJs.endOfDay)(_date, options) === +(0, _endOfMonthJs.endOfMonth)(_date, options);
+}
+// Fallback for modularized imports:
+exports.default = isLastDayOfMonth;
+
+},{"./endOfDay.js":"jtO7f","./endOfMonth.js":"kcCWM","./toDate.js":"actWA","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"jtO7f":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+/**
+ * The {@link endOfDay} function options.
+ */ /**
+ * @name endOfDay
+ * @category Day Helpers
+ * @summary Return the end of a day for the given date.
+ *
+ * @description
+ * Return the end of a day for the given date.
+ * The result will be in the local timezone.
+ *
+ * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
+ * @typeParam ResultDate - The result `Date` type, it is the type returned from the context function if it is passed, or inferred from the arguments.
+ *
+ * @param date - The original date
+ * @param options - An object with options
+ *
+ * @returns The end of a day
+ *
+ * @example
+ * // The end of a day for 2 September 2014 11:55:00:
+ * const result = endOfDay(new Date(2014, 8, 2, 11, 55, 0))
+ * //=> Tue Sep 02 2014 23:59:59.999
+ */ parcelHelpers.export(exports, "endOfDay", ()=>endOfDay);
+var _toDateJs = require("./toDate.js");
+function endOfDay(date, options) {
+    const _date = (0, _toDateJs.toDate)(date, options?.in);
+    _date.setHours(23, 59, 59, 999);
+    return _date;
+}
+// Fallback for modularized imports:
+exports.default = endOfDay;
+
+},{"./toDate.js":"actWA","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"kcCWM":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+/**
+ * The {@link endOfMonth} function options.
+ */ /**
+ * @name endOfMonth
+ * @category Month Helpers
+ * @summary Return the end of a month for the given date.
+ *
+ * @description
+ * Return the end of a month for the given date.
+ * The result will be in the local timezone.
+ *
+ * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
+ * @typeParam ResultDate - The result `Date` type, it is the type returned from the context function if it is passed, or inferred from the arguments.
+ *
+ * @param date - The original date
+ * @param options - An object with options
+ *
+ * @returns The end of a month
+ *
+ * @example
+ * // The end of a month for 2 September 2014 11:55:00:
+ * const result = endOfMonth(new Date(2014, 8, 2, 11, 55, 0))
+ * //=> Tue Sep 30 2014 23:59:59.999
+ */ parcelHelpers.export(exports, "endOfMonth", ()=>endOfMonth);
+var _toDateJs = require("./toDate.js");
+function endOfMonth(date, options) {
+    const _date = (0, _toDateJs.toDate)(date, options?.in);
+    const month = _date.getMonth();
+    _date.setFullYear(_date.getFullYear(), month + 1, 0);
+    _date.setHours(23, 59, 59, 999);
+    return _date;
+}
+// Fallback for modularized imports:
+exports.default = endOfMonth;
+
+},{"./toDate.js":"actWA","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"iFe68":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+/**
+ * The {@link differenceInYears} function options.
+ */ /**
+ * @name differenceInYears
+ * @category Year Helpers
+ * @summary Get the number of full years between the given dates.
+ *
+ * @description
+ * Get the number of full years between the given dates.
+ *
+ * @param laterDate - The later date
+ * @param earlierDate - The earlier date
+ * @param options - An object with options
+ *
+ * @returns The number of full years
+ *
+ * @example
+ * // How many full years are between 31 December 2013 and 11 February 2015?
+ * const result = differenceInYears(new Date(2015, 1, 11), new Date(2013, 11, 31))
+ * //=> 1
+ */ parcelHelpers.export(exports, "differenceInYears", ()=>differenceInYears);
+var _normalizeDatesJs = require("./_lib/normalizeDates.js");
+var _compareAscJs = require("./compareAsc.js");
+var _differenceInCalendarYearsJs = require("./differenceInCalendarYears.js");
+function differenceInYears(laterDate, earlierDate, options) {
+    const [laterDate_, earlierDate_] = (0, _normalizeDatesJs.normalizeDates)(options?.in, laterDate, earlierDate);
+    // -1 if the left date is earlier than the right date
+    // 2023-12-31 - 2024-01-01 = -1
+    const sign = (0, _compareAscJs.compareAsc)(laterDate_, earlierDate_);
+    // First calculate the difference in calendar years
+    // 2024-01-01 - 2023-12-31 = 1 year
+    const diff = Math.abs((0, _differenceInCalendarYearsJs.differenceInCalendarYears)(laterDate_, earlierDate_));
+    // Now we need to calculate if the difference is full. To do that we set
+    // both dates to the same year and check if the both date's month and day
+    // form a full year.
+    laterDate_.setFullYear(1584);
+    earlierDate_.setFullYear(1584);
+    // For it to be true, when the later date is indeed later than the earlier date
+    // (2026-02-01 - 2023-12-10 = 3 years), the difference is full if
+    // the normalized later date is also later than the normalized earlier date.
+    // In our example, 1584-02-01 is earlier than 1584-12-10, so the difference
+    // is partial, hence we need to subtract 1 from the difference 3 - 1 = 2.
+    const partial = (0, _compareAscJs.compareAsc)(laterDate_, earlierDate_) === -sign;
+    const result = sign * (diff - +partial);
+    // Prevent negative zero
+    return result === 0 ? 0 : result;
+}
+// Fallback for modularized imports:
+exports.default = differenceInYears;
+
+},{"./_lib/normalizeDates.js":"aCztF","./compareAsc.js":"fgd9M","./differenceInCalendarYears.js":"e0VtU","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"6AV3j":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 /**
@@ -3235,55 +3832,6 @@ function isBefore(date, dateToCompare) {
 // Fallback for modularized imports:
 exports.default = isBefore;
 
-},{"./toDate.js":"actWA","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"actWA":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-/**
- * @name toDate
- * @category Common Helpers
- * @summary Convert the given argument to an instance of Date.
- *
- * @description
- * Convert the given argument to an instance of Date.
- *
- * If the argument is an instance of Date, the function returns its clone.
- *
- * If the argument is a number, it is treated as a timestamp.
- *
- * If the argument is none of the above, the function returns Invalid Date.
- *
- * Starting from v3.7.0, it clones a date using `[Symbol.for("constructDateFrom")]`
- * enabling to transfer extra properties from the reference date to the new date.
- * It's useful for extensions like [`TZDate`](https://github.com/date-fns/tz)
- * that accept a time zone as a constructor argument.
- *
- * **Note**: *all* Date arguments passed to any *date-fns* function is processed by `toDate`.
- *
- * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
- * @typeParam ResultDate - The result `Date` type, it is the type returned from the context function if it is passed, or inferred from the arguments.
- *
- * @param argument - The value to convert
- *
- * @returns The parsed date in the local time zone
- *
- * @example
- * // Clone the date:
- * const result = toDate(new Date(2014, 1, 11, 11, 30, 30))
- * //=> Tue Feb 11 2014 11:30:30
- *
- * @example
- * // Convert the timestamp to date:
- * const result = toDate(1392098430000)
- * //=> Tue Feb 11 2014 11:30:30
- */ parcelHelpers.export(exports, "toDate", ()=>toDate);
-var _constructFromJs = require("./constructFrom.js");
-function toDate(argument, context) {
-    // [TODO] Get rid of `toDate` or `constructFrom`?
-    return (0, _constructFromJs.constructFrom)(context || argument, argument);
-}
-// Fallback for modularized imports:
-exports.default = toDate;
-
-},{"./constructFrom.js":"hNMdA","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["hycaY","aenu9"], "aenu9", "parcelRequiredcbb")
+},{"./toDate.js":"actWA","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["hycaY","aenu9"], "aenu9", "parcelRequiredcbb")
 
 //# sourceMappingURL=index.e37f48ea.js.map

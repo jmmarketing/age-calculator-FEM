@@ -1,7 +1,12 @@
 import "core-js/stable";
 import "regenerator-runtime/runtime";
 
-import { isBefore } from "date-fns";
+import {
+  isBefore,
+  differenceInDays,
+  differenceInMonths,
+  differenceInYears,
+} from "date-fns";
 
 /*
 On Submit -
@@ -30,7 +35,7 @@ Convert to Days. Then calculate out. Own function.
 /* NOTE: Date related operations will be our model */
 
 const rawDate = new Date();
-const today = {
+const rawToday = {
   year: rawDate.getFullYear(),
   month: rawDate.getMonth() + 1,
   day: rawDate.getDate(),
@@ -41,6 +46,12 @@ const birthday = {
   year: null,
   month: null,
   day: null,
+};
+
+let realAge = {
+  years: null,
+  months: null,
+  days: null,
 };
 
 const daysOfMonth = new Map([
@@ -60,9 +71,31 @@ const daysOfMonth = new Map([
 
 // END DATE MODEL
 
-function checkDate() {
-  const { year, month, day } = object;
-  console.log(object);
+function calculateAge() {
+  const userBirthday = `${birthday.year}-${birthday.month}-${birthday.day}`;
+  const today = `${rawToday.year}-${rawToday.month}-${rawToday.day}`;
+
+  // Using Date-FNS
+  const years = differenceInYears(today, userBirthday);
+  const months = differenceInMonths(today, userBirthday) % 12;
+  let lastMonthBirthday;
+
+  if (birthday.day > rawToday.day) {
+    console.log("This Fired");
+    lastMonthBirthday = `${rawToday.year}-${rawToday.month - 1}-${
+      birthday.day
+    }`;
+  } else {
+    lastMonthBirthday = `${rawToday.year}-${rawToday.month}-${birthday.day}`;
+  }
+
+  const days = differenceInDays(today, lastMonthBirthday);
+
+  console.log(today);
+  console.log(lastMonthBirthday);
+  console.log(days);
+  realAge = { years, months, days };
+  console.log(realAge);
 }
 
 function clearInputs() {
@@ -83,7 +116,7 @@ function validateInputs() {
   });
 
   // Second pass of validation is field specific, but some requires other field info (like days for days in month validation)
-  if (birthday.year > today.year) {
+  if (birthday.year > rawToday.year) {
     yearInput.classList.add("invalid");
     birthday.year = null;
     return;
@@ -103,7 +136,7 @@ function validateInputs() {
   if (
     !isBefore(
       `${birthday.year}/${birthday.month}/${birthday.day}`,
-      `${today.year}/${today.month}/${today.day}`
+      `${rawToday.year}/${rawToday.month}/${rawToday.day}`
     )
   ) {
     ageInputs.forEach((input) => input.classList.add("invalid"));
@@ -116,13 +149,15 @@ const dayInput = document.querySelector("#day");
 const monthInput = document.querySelector("#month");
 const yearInput = document.querySelector("#year");
 const ageInputs = document.querySelectorAll(".calculator__input");
-const years = document.querySelector("#years-number");
-const months = document.querySelector("#months-number");
-const days = document.querySelector("#days-number");
+const yearsResult = document.querySelector("#years-number");
+const monthsResult = document.querySelector("#months-number");
+const daysResult = document.querySelector("#days-number");
 
 submitButton.addEventListener("click", function (e) {
   validateInputs();
   console.log(birthday);
   // Check State of Birthday
   if (Object.values(birthday).includes(null)) return;
+
+  calculateAge();
 });
