@@ -51,11 +51,17 @@ body {
 .heading-small:has(~ input.invalid) {
   color: hsl(0, 100%, 67%);
 }
+@media only screen and (max-width: 42.2em) {
+  .heading-small {
+    font-size: 1.2rem;
+  }
+}
 
 .error-message {
   color: hsl(0, 100%, 67%);
   font-weight: 400;
   opacity: 0;
+  display: none;
 }
 
 .calculator {
@@ -86,14 +92,14 @@ body {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  max-width: 160px;
+  max-width: clamp(88px, 23vw, 160px);
   flex: 1 1 30%;
 }
 .calculator__input {
   padding: 12px 24px;
   border-radius: 8px;
   border: 1px solid hsl(0, 0%, 86%);
-  font-size: 3.2rem;
+  font-size: clamp(2rem, 5vw, 3.2rem);
   font-family: "Poppins", sans-serif;
   font-weight: 700;
   color: hsl(0, 0%, 8%);
@@ -104,12 +110,17 @@ body {
   border: 1px solid hsl(259, 100%, 65%);
   transition: all 0.3s;
 }
+@media only screen and (max-width: 42.2em) {
+  .calculator__input {
+    padding: 12px 16px;
+  }
+}
 .calculator__input.invalid {
   border: 1px solid hsl(0, 100%, 67%);
 }
 .calculator__input.invalid + .error-message {
   opacity: 1;
-  transition: all 0.3s;
+  transition: all 0.5s;
 }
 .calculator__divider {
   position: relative;

@@ -27,7 +27,7 @@
     display: flex;
     flex-direction: column;
     gap: 8px;
-    max-width: 160px;
+    max-width: clamp(88px, 23vw, 160px);
 
     flex: 1 1 30%;
   }
@@ -38,7 +38,7 @@
     border-radius: 8px;
     border: 1px solid $color-light-grey;
 
-    font-size: 3.2rem;
+    font-size: clamp(2rem, 5vw, 3.2rem);
     font-family: "Poppins", sans-serif;
     font-weight: 700;
     color: $color-off-black;
@@ -53,11 +53,16 @@
       transition: all 0.3s;
     }
 
+    @include respond(mobile) {
+      padding: 12px 16px;
+    }
+
     &.invalid {
       border: 1px solid $color-error-red;
       + .error-message {
         opacity: 1;
-        transition: all 0.3s;
+        // transform: scale(1);
+        transition: all 0.5s;
       }
     }
   }

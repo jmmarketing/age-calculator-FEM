@@ -48,10 +48,17 @@ body {
   color: #ff5757;
 }
 
+@media only screen and (width <= 42.2em) {
+  .heading-small {
+    font-size: 1.2rem;
+  }
+}
+
 .error-message {
   color: #ff5757;
   opacity: 0;
   font-weight: 400;
+  display: none;
 }
 
 .calculator {
@@ -86,7 +93,7 @@ body {
   flex-direction: column;
   flex: 30%;
   gap: 8px;
-  max-width: 160px;
+  max-width: clamp(88px, 23vw, 160px);
   display: flex;
 }
 
@@ -98,7 +105,7 @@ body {
   outline: none;
   padding: 12px 24px;
   font-family: Poppins, sans-serif;
-  font-size: 3.2rem;
+  font-size: clamp(2rem, 5vw, 3.2rem);
   font-weight: 700;
 }
 
@@ -107,13 +114,19 @@ body {
   transition: all .3s;
 }
 
+@media only screen and (width <= 42.2em) {
+  .calculator__input {
+    padding: 12px 16px;
+  }
+}
+
 .calculator__input.invalid {
   border: 1px solid #ff5757;
 }
 
 .calculator__input.invalid + .error-message {
   opacity: 1;
-  transition: all .3s;
+  transition: all .5s;
 }
 
 .calculator__divider {
