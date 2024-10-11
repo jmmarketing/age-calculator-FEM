@@ -8,7 +8,7 @@
 156C:\Users\jeffm\Desktop\Design -Development Education\Design\Frontend Mentor\Age-calculator\node_modules\css-select\node_modules\entities\lib\esm\decode.d.ts133728232721221943 0
 125C:\Users\jeffm\Desktop\Design -Development Education\Design\Frontend Mentor\Age-calculator\node_modules\core-js\actual\string133728234104268538 1
 134C:\Users\jeffm\Desktop\Design -Development Education\Design\Frontend Mentor\Age-calculator\node_modules\core-js\es\instance\pad-end.js133728234005636850 0
-104C:\Users\jeffm\Desktop\Design -Development Education\Design\Frontend Mentor\Age-calculator\sass\main.css133728020925392677 0
+104C:\Users\jeffm\Desktop\Design -Development Education\Design\Frontend Mentor\Age-calculator\sass\main.css133731475116629593 0
 132C:\Users\jeffm\Desktop\Design -Development Education\Design\Frontend Mentor\Age-calculator\node_modules\nth-check\lib\parse.d.ts.map133728232557217482 0
 158C:\Users\jeffm\Desktop\Design -Development Education\Design\Frontend Mentor\Age-calculator\node_modules\@parcel\core\test\fixtures\invalid-source-not-file\src133728232757828363 1
 135C:\Users\jeffm\Desktop\Design -Development Education\Design\Frontend Mentor\Age-calculator\node_modules\date-fns\differenceInSeconds.js133728236002997232 0
@@ -55,7 +55,7 @@
 131C:\Users\jeffm\Desktop\Design -Development Education\Design\Frontend Mentor\Age-calculator\node_modules\date-fns\fp\nextThursday.js133728236134681670 0
 124C:\Users\jeffm\Desktop\Design -Development Education\Design\Frontend Mentor\Age-calculator\node_modules\date-fns\isEqual.cjs133728235676332147 0
 138C:\Users\jeffm\Desktop\Design -Development Education\Design\Frontend Mentor\Age-calculator\node_modules\type-fest\source\package-json.d.ts133728232611592758 0
-95C:\Users\jeffm\Desktop\Design -Development Education\Design\Frontend Mentor\Age-calculator\dist133730700947065441 1
+95C:\Users\jeffm\Desktop\Design -Development Education\Design\Frontend Mentor\Age-calculator\dist133731475117932615 1
 138C:\Users\jeffm\Desktop\Design -Development Education\Design\Frontend Mentor\Age-calculator\node_modules\date-fns\locale\hu\_lib\match.d.ts133728236581234621 0
 112C:\Users\jeffm\Desktop\Design -Development Education\Design\Frontend Mentor\Age-calculator\node_modules\argparse133728232466795043 1
 101C:\Users\jeffm\Desktop\Design -Development Education\Design\Frontend Mentor\Age-calculator\index.html133729006682219703 0
@@ -74,7 +74,7 @@
 127C:\Users\jeffm\Desktop\Design -Development Education\Design\Frontend Mentor\Age-calculator\node_modules\core-js\es\math\tanh.js133728234065151684 0
 138C:\Users\jeffm\Desktop\Design -Development Education\Design\Frontend Mentor\Age-calculator\node_modules\date-fns\locale\da\_lib\match.d.ts133728236580706028 0
 132C:\Users\jeffm\Desktop\Design -Development Education\Design\Frontend Mentor\Age-calculator\node_modules\core-js\full\string\match.js133728233994014159 0
-123C:\Users\jeffm\Desktop\Design -Development Education\Design\Frontend Mentor\Age-calculator\sass\components\_calculator.scss133728020923547560 0
+123C:\Users\jeffm\Desktop\Design -Development Education\Design\Frontend Mentor\Age-calculator\sass\components\_calculator.scss133731475112976398 0
 145C:\Users\jeffm\Desktop\Design -Development Education\Design\Frontend Mentor\Age-calculator\node_modules\date-fns\locale\lv\_lib\formatDistance.js133728236029841692 0
 100C:\Users\jeffm\Desktop\Design -Development Education\Design\Frontend Mentor\Age-calculator\README.md133538692680000000 0
 133C:\Users\jeffm\Desktop\Design -Development Education\Design\Frontend Mentor\Age-calculator\node_modules\date-fns\getWeekOfMonth.d.cts133728235839022997 0
@@ -234,7 +234,7 @@
 131C:\Users\jeffm\Desktop\Design -Development Education\Design\Frontend Mentor\Age-calculator\node_modules\@parcel\transformer-raw\lib133728232336690382 1
 160C:\Users\jeffm\Desktop\Design -Development Education\Design\Frontend Mentor\Age-calculator\node_modules\css-select\node_modules\entities\lib\esm\decode.d.ts.map133728232651673662 0
 140C:\Users\jeffm\Desktop\Design -Development Education\Design\Frontend Mentor\Age-calculator\node_modules\@parcel\source-map\dist\wasm.js.flow133728232450306924 0
-108C:\Users\jeffm\Desktop\Design -Development Education\Design\Frontend Mentor\Age-calculator\sass\main.css.map133728020925386676 0
+108C:\Users\jeffm\Desktop\Design -Development Education\Design\Frontend Mentor\Age-calculator\sass\main.css.map133731475116629593 0
 143C:\Users\jeffm\Desktop\Design -Development Education\Design\Frontend Mentor\Age-calculator\node_modules\core-js\features\symbol\to-primitive.js133728234080980043 0
 132C:\Users\jeffm\Desktop\Design -Development Education\Design\Frontend Mentor\Age-calculator\node_modules\postcss-value-parser\LICENSE133728232330437253 0
 142C:\Users\jeffm\Desktop\Design -Development Education\Design\Frontend Mentor\Age-calculator\node_modules\svgo\plugins\addClassesToSVGElement.js133728232679757321 0
@@ -304,7 +304,7 @@
 145C:\Users\jeffm\Desktop\Design -Development Education\Design\Frontend Mentor\Age-calculator\node_modules\date-fns\locale\ug\_lib\formatDistance.js133728236032921687 0
 146C:\Users\jeffm\Desktop\Design -Development Education\Design\Frontend Mentor\Age-calculator\node_modules\core-js\features\string\from-code-point.js133728233911417244 0
 109C:\Users\jeffm\Desktop\Design -Development Education\Design\Frontend Mentor\Age-calculator\node_modules\chalk133728232448744450 1
-111C:\Users\jeffm\Desktop\Design -Development Education\Design\Frontend Mentor\Age-calculator\sass\base\_base.scss133723795018720763 0
+111C:\Users\jeffm\Desktop\Design -Development Education\Design\Frontend Mentor\Age-calculator\sass\base\_base.scss133731414731560747 0
 130C:\Users\jeffm\Desktop\Design -Development Education\Design\Frontend Mentor\Age-calculator\node_modules\date-fns\getUnixTime.d.cts133728235838693529 0
 132C:\Users\jeffm\Desktop\Design -Development Education\Design\Frontend Mentor\Age-calculator\node_modules\date-fns\fp\endOfDecade.d.ts133728236468248883 0
 135C:\Users\jeffm\Desktop\Design -Development Education\Design\Frontend Mentor\Age-calculator\node_modules\caniuse-lite\data\regions\TD.js133728233070992543 0
@@ -339,7 +339,7 @@
 125C:\Users\jeffm\Desktop\Design -Development Education\Design\Frontend Mentor\Age-calculator\node_modules\msgpackr\unpack.d.cts133728232480740492 0
 130C:\Users\jeffm\Desktop\Design -Development Education\Design\Frontend Mentor\Age-calculator\node_modules\mdn-data\css\at-rules.json133728232436733048 0
 131C:\Users\jeffm\Desktop\Design -Development Education\Design\Frontend Mentor\Age-calculator\node_modules\@lezer\lr\dist\constants.js133728232411683719 0
-118C:\Users\jeffm\Desktop\Design -Development Education\Design\Frontend Mentor\Age-calculator\sass\abstracts\_mixins.scss133723697468231927 0
+118C:\Users\jeffm\Desktop\Design -Development Education\Design\Frontend Mentor\Age-calculator\sass\abstracts\_mixins.scss133731461964167061 0
 128C:\Users\jeffm\Desktop\Design -Development Education\Design\Frontend Mentor\Age-calculator\node_modules\safe-buffer\package.json133728232342238885 0
 119C:\Users\jeffm\Desktop\Design -Development Education\Design\Frontend Mentor\Age-calculator\node_modules\date-fns\cdn.js133728235936018889 0
 131C:\Users\jeffm\Desktop\Design -Development Education\Design\Frontend Mentor\Age-calculator\node_modules\date-fns\hoursToSeconds.cjs133728235674870021 0
@@ -2054,7 +2054,7 @@
 145C:\Users\jeffm\Desktop\Design -Development Education\Design\Frontend Mentor\Age-calculator\node_modules\core-js\actual\async-iterator\to-array.js133728234066954219 0
 142C:\Users\jeffm\Desktop\Design -Development Education\Design\Frontend Mentor\Age-calculator\node_modules\core-js\stable\object\lookup-setter.js133728233988701722 0
 134C:\Users\jeffm\Desktop\Design -Development Education\Design\Frontend Mentor\Age-calculator\node_modules\date-fns\quartersToYears.d.cts133728235921803296 0
-113C:\Users\jeffm\Desktop\Design -Development Education\Design\Frontend Mentor\Age-calculator\dist\index.e37f48ea.js133730700943312572 0
+113C:\Users\jeffm\Desktop\Design -Development Education\Design\Frontend Mentor\Age-calculator\dist\index.e37f48ea.js133731473482331368 0
 142C:\Users\jeffm\Desktop\Design -Development Education\Design\Frontend Mentor\Age-calculator\node_modules\caniuse-lite\data\features\minmaxwh.js133728233030794325 0
 124C:\Users\jeffm\Desktop\Design -Development Education\Design\Frontend Mentor\Age-calculator\node_modules\core-js\es\README.md133728234122793212 0
 147C:\Users\jeffm\Desktop\Design -Development Education\Design\Frontend Mentor\Age-calculator\node_modules\date-fns\locale\tr\_lib\formatRelative.d.ts133728236549115874 0
@@ -3019,7 +3019,7 @@
 120C:\Users\jeffm\Desktop\Design -Development Education\Design\Frontend Mentor\Age-calculator\node_modules\mdn-data\LICENSE133728232325621879 0
 142C:\Users\jeffm\Desktop\Design -Development Education\Design\Frontend Mentor\Age-calculator\node_modules\core-js\features\array\virtual\push.js133728234016724215 0
 151C:\Users\jeffm\Desktop\Design -Development Education\Design\Frontend Mentor\Age-calculator\node_modules\entities\lib\generated\decode-data-xml.d.ts.map133728232540380381 0
-118C:\Users\jeffm\Desktop\Design -Development Education\Design\Frontend Mentor\Age-calculator\dist\index.b458fa94.css.map133730700945884483 0
+118C:\Users\jeffm\Desktop\Design -Development Education\Design\Frontend Mentor\Age-calculator\dist\index.b458fa94.css.map133731475117887881 0
 152C:\Users\jeffm\Desktop\Design -Development Education\Design\Frontend Mentor\Age-calculator\node_modules\css-select\lib\pseudo-selectors\pseudos.d.ts.map133728232707872379 0
 125C:\Users\jeffm\Desktop\Design -Development Education\Design\Frontend Mentor\Age-calculator\node_modules\mdn-data\package.json133728232522439109 0
 136C:\Users\jeffm\Desktop\Design -Development Education\Design\Frontend Mentor\Age-calculator\node_modules\date-fns\fp\formatWithOptions.js133728236063901075 0
@@ -5049,7 +5049,7 @@
 139C:\Users\jeffm\Desktop\Design -Development Education\Design\Frontend Mentor\Age-calculator\node_modules\date-fns\fp\eachWeekOfInterval.d.ts133728236459776545 0
 156C:\Users\jeffm\Desktop\Design -Development Education\Design\Frontend Mentor\Age-calculator\node_modules\csso\node_modules\css-tree\cjs\syntax\node\Block.cjs133728232482102298 0
 138C:\Users\jeffm\Desktop\Design -Development Education\Design\Frontend Mentor\Age-calculator\node_modules\date-fns\locale\uz-Cyrl\cdn.js.map133728236267130753 0
-122C:\Users\jeffm\Desktop\Design -Development Education\Design\Frontend Mentor\Age-calculator\dist\favicon-32x32.d48f6cd1.png133730700942233383 0
+122C:\Users\jeffm\Desktop\Design -Development Education\Design\Frontend Mentor\Age-calculator\dist\favicon-32x32.d48f6cd1.png133731473479113713 0
 131C:\Users\jeffm\Desktop\Design -Development Education\Design\Frontend Mentor\Age-calculator\node_modules\date-fns\isThisSecond.d.cts133728235855716530 0
 142C:\Users\jeffm\Desktop\Design -Development Education\Design\Frontend Mentor\Age-calculator\node_modules\core-js\stable\object\is-extensible.js133728233963565372 0
 150C:\Users\jeffm\Desktop\Design -Development Education\Design\Frontend Mentor\Age-calculator\node_modules\date-fns\parse\_lib\parsers\LocalWeekParser.js133728236120878443 0
@@ -10824,7 +10824,7 @@
 152C:\Users\jeffm\Desktop\Design -Development Education\Design\Frontend Mentor\Age-calculator\node_modules\css-select\lib\pseudo-selectors\filters.d.ts.map133728232664547060 0
 134C:\Users\jeffm\Desktop\Design -Development Education\Design\Frontend Mentor\Age-calculator\node_modules\core-js\actual\object\proto.js133728234014707524 0
 144C:\Users\jeffm\Desktop\Design -Development Education\Design\Frontend Mentor\Age-calculator\node_modules\css-select\lib\pseudo-selectors\index.js133728232542426579 0
-114C:\Users\jeffm\Desktop\Design -Development Education\Design\Frontend Mentor\Age-calculator\dist\index.b458fa94.css133730700945655094 0
+114C:\Users\jeffm\Desktop\Design -Development Education\Design\Frontend Mentor\Age-calculator\dist\index.b458fa94.css133731475117763849 0
 148C:\Users\jeffm\Desktop\Design -Development Education\Design\Frontend Mentor\Age-calculator\node_modules\css-select\lib\pseudo-selectors\pseudos.d.ts133728232759115885 0
 131C:\Users\jeffm\Desktop\Design -Development Education\Design\Frontend Mentor\Age-calculator\node_modules\@parcel\package-manager\lib133728232705002444 1
 150C:\Users\jeffm\Desktop\Design -Development Education\Design\Frontend Mentor\Age-calculator\node_modules\css-select\lib\pseudo-selectors\pseudos.js.map133728232709195989 0
@@ -13576,7 +13576,7 @@
 122C:\Users\jeffm\Desktop\Design -Development Education\Design\Frontend Mentor\Age-calculator\node_modules\@parcel\diagnostic133728232436683178 1
 160C:\Users\jeffm\Desktop\Design -Development Education\Design\Frontend Mentor\Age-calculator\node_modules\@swc\helpers\_\_initializer_define_property\package.json133728232782080986 0
 135C:\Users\jeffm\Desktop\Design -Development Education\Design\Frontend Mentor\Age-calculator\node_modules\caniuse-lite\data\regions\RE.js133728233060309730 0
-117C:\Users\jeffm\Desktop\Design -Development Education\Design\Frontend Mentor\Age-calculator\dist\index.e37f48ea.js.map133730700945665068 0
+117C:\Users\jeffm\Desktop\Design -Development Education\Design\Frontend Mentor\Age-calculator\dist\index.e37f48ea.js.map133731473482998311 0
 135C:\Users\jeffm\Desktop\Design -Development Education\Design\Frontend Mentor\Age-calculator\node_modules\caniuse-lite\data\regions\RO.js133728233061415214 0
 135C:\Users\jeffm\Desktop\Design -Development Education\Design\Frontend Mentor\Age-calculator\node_modules\caniuse-lite\data\regions\RU.js133728233061605310 0
 135C:\Users\jeffm\Desktop\Design -Development Education\Design\Frontend Mentor\Age-calculator\node_modules\caniuse-lite\data\regions\SB.js133728233062376298 0
@@ -15151,4 +15151,4 @@
 119C:\Users\jeffm\Desktop\Design -Development Education\Design\Frontend Mentor\Age-calculator\assets\images\icon-arrow.svg133538692680000000 0
 122C:\Users\jeffm\Desktop\Design -Development Education\Design\Frontend Mentor\Age-calculator\assets\fonts\Poppins-Italic.ttf133538692680000000 0
 123C:\Users\jeffm\Desktop\Design -Development Education\Design\Frontend Mentor\Age-calculator\assets\fonts\Poppins-Regular.ttf133538692680000000 0
-106C:\Users\jeffm\Desktop\Design -Development Education\Design\Frontend Mentor\Age-calculator\dist\index.html133729896604234592 0
+106C:\Users\jeffm\Desktop\Design -Development Education\Design\Frontend Mentor\Age-calculator\dist\index.html133731473482718599 0

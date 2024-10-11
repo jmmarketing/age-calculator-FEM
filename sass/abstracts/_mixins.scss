@@ -1,0 +1,9 @@
+//675 break point
+
+@mixin respond($breakpoint) {
+  @if $breakpoint == mobile {
+    @media only screen and (max-width: 42.2em) {
+      @content;
+    }
+  }
+}

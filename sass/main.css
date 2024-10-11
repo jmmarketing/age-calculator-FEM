@@ -19,6 +19,7 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+  padding: 0 16px;
 }
 
 body {
@@ -61,19 +62,34 @@ body {
   background-color: hsl(0, 0%, 100%);
   border-radius: 24px 24px 200px 24px;
   padding: 56px;
-  width: 840px;
+  width: clamp(343px, 100%, 840px);
+  display: flex;
+  flex-direction: column;
+}
+@media only screen and (max-width: 42.2em) {
+  .calculator {
+    padding: 48px 24px;
+    gap: 32px;
+    border-radius: 24px 24px 100px 24px;
+  }
 }
 .calculator__input-row {
   display: inline-flex;
   gap: 32px;
 }
+@media only screen and (max-width: 42.2em) {
+  .calculator__input-row {
+    gap: 16px;
+  }
+}
 .calculator__input-group {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  max-width: 160px;
+  flex: 1 1 30%;
 }
 .calculator__input {
-  width: 160px;
   padding: 12px 24px;
   border-radius: 8px;
   border: 1px solid hsl(0, 0%, 86%);
@@ -118,6 +134,7 @@ body {
 .calculator__divider--icon:hover {
   background-color: hsl(0, 0%, 8%);
 }
+
 .calculator__results--group {
   display: inline-flex;
   gap: 8px;
@@ -125,6 +142,7 @@ body {
 .calculator__results--number {
   color: hsl(259, 100%, 65%);
 }
+
 /*
 #### INCLUDE AS NEEDED###
 
