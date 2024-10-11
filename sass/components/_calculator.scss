@@ -65,11 +65,20 @@
   &__divider {
     position: relative;
     height: 96px;
+
+    @include respond(mobile) {
+      height: 64px;
+    }
+
     &--line {
       height: 1px;
       background-color: $color-light-grey;
       position: relative;
       top: 48px;
+
+      @include respond(mobile) {
+        top: 32px;
+      }
     }
 
     &--icon {
@@ -88,14 +97,30 @@
         background-color: $color-off-black;
       }
 
-      // svg {
-      //   // transform: translate(50%, 50%);
-      // }
+      @include respond(mobile) {
+        width: 64px;
+        height: 64px;
+        right: calc(50% - 32px);
+      }
+
+      svg {
+        @include respond(mobile) {
+          width: 24px;
+          height: 24px;
+
+          g {
+            stroke-width: 4;
+          }
+        }
+      }
     }
   }
 }
 
 .calculator__results {
+  display: flex;
+  flex-direction: column;
+
   &--group {
     display: inline-flex;
     gap: 8px;
