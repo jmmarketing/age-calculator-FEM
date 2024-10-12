@@ -61,7 +61,6 @@ body {
   color: hsl(0, 100%, 67%);
   font-weight: 400;
   opacity: 0;
-  display: none;
 }
 
 .calculator {

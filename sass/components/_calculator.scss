@@ -61,6 +61,7 @@
       border: 1px solid $color-error-red;
       + .error-message {
         opacity: 1;
+        // display: block;
         // transform: scale(1);
         transition: all 0.5s;
       }
