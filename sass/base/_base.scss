@@ -19,8 +19,12 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
-  padding: 0 16px;
+  // min-height: 100vh;
+  padding: 171px 16px;
+
+  @include respond(mobile) {
+    padding: 88px 16px;
+  }
 }
 
 // main {

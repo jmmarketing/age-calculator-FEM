@@ -14,13 +14,21 @@ body {
   background-color: #dbdbdb;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
-  padding: 0 16px;
+  padding: 171px 16px;
+  display: flex;
+  overflow-x: hidden;
+}
+
+@media only screen and (width <= 42.2em) {
+  body {
+    padding: 88px 16px;
+  }
+}
+
+body {
   font-family: Poppins, sans-serif;
   font-size: 1.4rem;
   font-style: italic;
-  display: flex;
-  overflow-x: hidden;
 }
 
 .heading-large {
@@ -58,6 +66,7 @@ body {
   color: #ff5757;
   opacity: 0;
   font-weight: 400;
+  display: none;
 }
 
 .calculator {
@@ -126,6 +135,7 @@ body {
 .calculator__input.invalid + .error-message {
   opacity: 1;
   transition: all .5s;
+  display: block;
 }
 
 .calculator__divider {

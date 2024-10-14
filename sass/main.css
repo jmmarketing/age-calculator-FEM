@@ -18,8 +18,12 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
-  padding: 0 16px;
+  padding: 171px 16px;
+}
+@media only screen and (max-width: 42.2em) {
+  body {
+    padding: 88px 16px;
+  }
 }
 
 body {
@@ -61,6 +65,7 @@ body {
   color: hsl(0, 100%, 67%);
   font-weight: 400;
   opacity: 0;
+  display: none;
 }
 
 .calculator {
@@ -119,6 +124,7 @@ body {
 }
 .calculator__input.invalid + .error-message {
   opacity: 1;
+  display: block;
   transition: all 0.5s;
 }
 .calculator__divider {

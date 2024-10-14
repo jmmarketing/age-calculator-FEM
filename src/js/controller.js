@@ -107,6 +107,9 @@ function displayAge() {
 
 function clearInputs() {
   ageInputs.forEach((input) => (input.value = ""));
+  // document
+  //   .querySelectorAll(".error-message")
+  //   .forEach((input) => (input.style.display = "none"));
 }
 
 function validateInputs() {

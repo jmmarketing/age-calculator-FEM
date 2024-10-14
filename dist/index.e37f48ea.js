@@ -708,6 +708,9 @@ function displayAge() {
 }
 function clearInputs() {
     ageInputs.forEach((input)=>input.value = "");
+// document
+//   .querySelectorAll(".error-message")
+//   .forEach((input) => (input.style.display = "none"));
 }
 function validateInputs() {
     // First validation makes sure there is a number and not blank
