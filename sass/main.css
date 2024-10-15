@@ -97,7 +97,6 @@ body {
   flex-direction: column;
   gap: 8px;
   max-width: clamp(88px, 23vw, 160px);
-  flex: 1 1 30%;
 }
 .calculator__input {
   padding: 12px 24px;

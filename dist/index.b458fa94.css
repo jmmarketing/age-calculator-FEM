@@ -99,7 +99,6 @@ body {
 
 .calculator__input-group {
   flex-direction: column;
-  flex: 30%;
   gap: 8px;
   max-width: clamp(88px, 23vw, 160px);
   display: flex;
