@@ -18,7 +18,7 @@ class CalculatorView {
       // First validation makes sure there is a number and not blank
       this._ageInputs.forEach((input) => {
         const val = Number.parseInt(+input.value);
-        console.log(val);
+        // console.log(val);
         if (!Number.isInteger(val) || !input.value) {
           input.classList.add("invalid");
           input.nextElementSibling.textContent = this._errorMessage;

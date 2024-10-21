@@ -590,11 +590,9 @@ var _runtime = require("regenerator-runtime/runtime");
 var _modelJs = require("./model.js");
 var _calculatorViewJs = require("./views/calculatorView.js");
 var _calculatorViewJsDefault = parcelHelpers.interopDefault(_calculatorViewJs);
-const controlCalculator = function() {
-    (0, _calculatorViewJsDefault.default).validateInputs();
+const controlCalculator = function(birthdayObject) {
+    _modelJs.validateInputs();
     console.log(birthday);
-    // Check State of Birthday
-    // if (Object.values(birthday).includes(null)) return;
     calculateAge();
     (0, _calculatorViewJsDefault.default).displayAge();
 };
@@ -2449,6 +2447,18 @@ var _webImmediateJs = require("core-js/modules/web.immediate.js");
 var _runtime = require("regenerator-runtime/runtime");
 var _dateFns = require("date-fns");
 const rawDate = new Date();
+const state = {
+    today: {
+        year: rawDate.getFullYear(),
+        month: rawDate.getMonth() + 1,
+        day: rawDate.getDate()
+    },
+    age: {
+        years: null,
+        months: null,
+        days: null
+    }
+};
 const rawToday = {
     year: rawDate.getFullYear(),
     month: rawDate.getMonth() + 1,
@@ -3828,7 +3838,7 @@ class CalculatorView {
             // First validation makes sure there is a number and not blank
             this._ageInputs.forEach((input)=>{
                 const val = Number.parseInt(+input.value);
-                console.log(val);
+                // console.log(val);
                 if (!Number.isInteger(val) || !input.value) {
                     input.classList.add("invalid");
                     input.nextElementSibling.textContent = this._errorMessage;

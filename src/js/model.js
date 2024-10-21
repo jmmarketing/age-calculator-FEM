@@ -9,24 +9,6 @@ import {
 } from "date-fns";
 
 const rawDate = new Date();
-const rawToday = {
-  year: rawDate.getFullYear(),
-  month: rawDate.getMonth() + 1,
-  day: rawDate.getDate(),
-  ms: Date.now(),
-};
-
-const birthday = {
-  year: null,
-  month: null,
-  day: null,
-};
-
-let realAge = {
-  years: null,
-  months: null,
-  days: null,
-};
 
 const daysOfMonth = new Map([
   [1, 31],
@@ -42,6 +24,43 @@ const daysOfMonth = new Map([
   [11, 30],
   [12, 31],
 ]);
+
+const state = {
+  today: {
+    year: rawDate.getFullYear(),
+    month: rawDate.getMonth() + 1,
+    day: rawDate.getDate(),
+  },
+  birthdate: {
+    year: null,
+    month: null,
+    day: null,
+  },
+  age: {
+    years: null,
+    months: null,
+    days: null,
+  },
+};
+
+// const rawToday = {
+//   year: rawDate.getFullYear(),
+//   month: rawDate.getMonth() + 1,
+//   day: rawDate.getDate(),
+//   ms: Date.now(),
+// };
+
+// const birthday = {
+//   year: null,
+//   month: null,
+//   day: null,
+// };
+
+// let realAge = {
+//   years: null,
+//   months: null,
+//   days: null,
+// };
 
 // END DATE MODEL
 
