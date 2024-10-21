@@ -45,7 +45,7 @@ const daysOfMonth = new Map([
 
 // END DATE MODEL
 
-function calculateAge() {
+export function calculateAge() {
   const userBirthday = `${birthday.year}-${birthday.month}-${birthday.day}`;
   const today = `${rawToday.year}-${rawToday.month}-${rawToday.day}`;
 
@@ -72,23 +72,7 @@ function calculateAge() {
   console.log(realAge);
 }
 
-function validateInputs() {
-  // First validation makes sure there is a number and not blank
-  ageInputs.forEach((input) => {
-    const val = Number.parseInt(+input.value);
-    console.log(val);
-    if (!Number.isInteger(val) || !input.value) {
-      input.classList.add("invalid");
-      input.nextElementSibling.textContent = "This field is required";
-      birthday[input.name] = null;
-    } else {
-      birthday[input.name] = val;
-      input.classList.remove("invalid");
-    }
-  });
-
-  if (Object.values(birthday).includes(null)) return;
-
+export function validateInputs() {
   // Second pass of validation is field specific, but some requires other field info (like days for days in month validation)
   if (birthday.year > rawToday.year) {
     yearInput.classList.add("invalid");

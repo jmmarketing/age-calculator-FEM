@@ -7,12 +7,31 @@ class CalculatorView {
   _yearsResult = document.querySelector("#years-number");
   _monthsResult = document.querySelector("#months-number");
   _daysResult = document.querySelector("#days-number");
-  _errorMessage;
+  _errorMessage = "This field is required";
 
   addHandlerSubmitAge(handlerFunction) {
-    this._submitButton.addEventListener("click", function (e) {
+    // Arrow function for the event Function to keep 'this' referencing the class, could use .bind too
+    this._submitButton.addEventListener("click", (e) => {
       e.preventDefault();
-      handlerFunction();
+      const birthday = {};
+
+      // First validation makes sure there is a number and not blank
+      this._ageInputs.forEach((input) => {
+        const val = Number.parseInt(+input.value);
+        console.log(val);
+        if (!Number.isInteger(val) || !input.value) {
+          input.classList.add("invalid");
+          input.nextElementSibling.textContent = this._errorMessage;
+          birthday[input.name] = null;
+        } else {
+          birthday[input.name] = val;
+          input.classList.remove("invalid");
+        }
+      });
+
+      if (Object.values(birthday).includes(null)) return;
+
+      handlerFunction(birthday);
     });
   }
 
