@@ -25,7 +25,7 @@ const daysOfMonth = new Map([
   [12, 31],
 ]);
 
-const state = {
+export const state = {
   today: {
     year: rawDate.getFullYear(),
     month: rawDate.getMonth() + 1,
@@ -65,21 +65,21 @@ const state = {
 // END DATE MODEL
 
 export function calculateAge() {
-  const userBirthday = `${birthday.year}-${birthday.month}-${birthday.day}`;
-  const today = `${rawToday.year}-${rawToday.month}-${rawToday.day}`;
+  const userBirthday = `${state.birthdate.year}-${state.birthdate.month}-${state.birthdate.day}`;
+  const today = `${state.today.year}-${state.today.month}-${state.today.day}`;
 
   // Using Date-FNS
   const years = differenceInYears(today, userBirthday);
   const months = differenceInMonths(today, userBirthday) % 12;
   let lastMonthBirthday;
 
-  if (birthday.day > rawToday.day) {
+  if (state.birthdate.day > state.today.day) {
     console.log("This Fired");
-    lastMonthBirthday = `${rawToday.year}-${rawToday.month - 1}-${
-      birthday.day
+    lastMonthBirthday = `${state.today.year}-${state.today.month - 1}-${
+      state.birthdate.day
     }`;
   } else {
-    lastMonthBirthday = `${rawToday.year}-${rawToday.month}-${birthday.day}`;
+    lastMonthBirthday = `${state.today.year}-${state.today.month}-${state.birthdate.day}`;
   }
 
   const days = differenceInDays(today, lastMonthBirthday);
@@ -87,8 +87,10 @@ export function calculateAge() {
   console.log(today);
   console.log(lastMonthBirthday);
   console.log(days);
-  realAge = { years, months, days };
-  console.log(realAge);
+
+  console.log(state.age);
+
+  state.age = { years, months, days };
 }
 
 export function validateInputs() {

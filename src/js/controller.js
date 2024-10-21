@@ -4,13 +4,13 @@ import "regenerator-runtime/runtime";
 import * as model from "./model.js";
 import calculatorView from "./views/calculatorView.js";
 
-const controlCalculator = function (birthdayObject) {
+function controlCalculator(birthdayObject) {
   model.validateInputs();
   console.log(birthday);
 
   calculateAge();
-  calculatorView.displayAge();
-};
+  calculatorView.displayAge(model.state.age);
+}
 
 const init = function () {
   calculatorView.addHandlerSubmitAge(controlCalculator);

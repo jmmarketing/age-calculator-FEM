@@ -590,12 +590,12 @@ var _runtime = require("regenerator-runtime/runtime");
 var _modelJs = require("./model.js");
 var _calculatorViewJs = require("./views/calculatorView.js");
 var _calculatorViewJsDefault = parcelHelpers.interopDefault(_calculatorViewJs);
-const controlCalculator = function(birthdayObject) {
+function controlCalculator(birthdayObject) {
     _modelJs.validateInputs();
     console.log(birthday);
     calculateAge();
-    (0, _calculatorViewJsDefault.default).displayAge();
-};
+    (0, _calculatorViewJsDefault.default).displayAge(_modelJs.state.age);
+}
 const init = function() {
     (0, _calculatorViewJsDefault.default).addHandlerSubmitAge(controlCalculator);
 };
@@ -2440,6 +2440,23 @@ try {
 },{}],"Y4A21":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "state", ()=>state);
+// const rawToday = {
+//   year: rawDate.getFullYear(),
+//   month: rawDate.getMonth() + 1,
+//   day: rawDate.getDate(),
+//   ms: Date.now(),
+// };
+// const birthday = {
+//   year: null,
+//   month: null,
+//   day: null,
+// };
+// let realAge = {
+//   years: null,
+//   months: null,
+//   days: null,
+// };
 // END DATE MODEL
 parcelHelpers.export(exports, "calculateAge", ()=>calculateAge);
 parcelHelpers.export(exports, "validateInputs", ()=>validateInputs);
@@ -2447,34 +2464,6 @@ var _webImmediateJs = require("core-js/modules/web.immediate.js");
 var _runtime = require("regenerator-runtime/runtime");
 var _dateFns = require("date-fns");
 const rawDate = new Date();
-const state = {
-    today: {
-        year: rawDate.getFullYear(),
-        month: rawDate.getMonth() + 1,
-        day: rawDate.getDate()
-    },
-    age: {
-        years: null,
-        months: null,
-        days: null
-    }
-};
-const rawToday = {
-    year: rawDate.getFullYear(),
-    month: rawDate.getMonth() + 1,
-    day: rawDate.getDate(),
-    ms: Date.now()
-};
-const birthday = {
-    year: null,
-    month: null,
-    day: null
-};
-let realAge = {
-    years: null,
-    months: null,
-    days: null
-};
 const daysOfMonth = new Map([
     [
         1,
@@ -2525,27 +2514,44 @@ const daysOfMonth = new Map([
         31
     ]
 ]);
+const state = {
+    today: {
+        year: rawDate.getFullYear(),
+        month: rawDate.getMonth() + 1,
+        day: rawDate.getDate()
+    },
+    birthdate: {
+        year: null,
+        month: null,
+        day: null
+    },
+    age: {
+        years: null,
+        months: null,
+        days: null
+    }
+};
 function calculateAge() {
-    const userBirthday = `${birthday.year}-${birthday.month}-${birthday.day}`;
-    const today = `${rawToday.year}-${rawToday.month}-${rawToday.day}`;
+    const userBirthday = `${state.birthdate.year}-${state.birthdate.month}-${state.birthdate.day}`;
+    const today = `${state.today.year}-${state.today.month}-${state.today.day}`;
     // Using Date-FNS
     const years = (0, _dateFns.differenceInYears)(today, userBirthday);
     const months = (0, _dateFns.differenceInMonths)(today, userBirthday) % 12;
     let lastMonthBirthday;
-    if (birthday.day > rawToday.day) {
+    if (state.birthdate.day > state.today.day) {
         console.log("This Fired");
-        lastMonthBirthday = `${rawToday.year}-${rawToday.month - 1}-${birthday.day}`;
-    } else lastMonthBirthday = `${rawToday.year}-${rawToday.month}-${birthday.day}`;
+        lastMonthBirthday = `${state.today.year}-${state.today.month - 1}-${state.birthdate.day}`;
+    } else lastMonthBirthday = `${state.today.year}-${state.today.month}-${state.birthdate.day}`;
     const days = (0, _dateFns.differenceInDays)(today, lastMonthBirthday);
     console.log(today);
     console.log(lastMonthBirthday);
     console.log(days);
-    realAge = {
+    console.log(state.age);
+    state.age = {
         years,
         months,
         days
     };
-    console.log(realAge);
 }
 function validateInputs() {
     // Second pass of validation is field specific, but some requires other field info (like days for days in month validation)
@@ -3830,41 +3836,39 @@ class CalculatorView {
     _monthsResult = document.querySelector("#months-number");
     _daysResult = document.querySelector("#days-number");
     _errorMessage = "This field is required";
+    _birthday = {};
     addHandlerSubmitAge(handlerFunction) {
         // Arrow function for the event Function to keep 'this' referencing the class, could use .bind too
         this._submitButton.addEventListener("click", (e)=>{
             e.preventDefault();
-            const birthday = {};
             // First validation makes sure there is a number and not blank
-            this._ageInputs.forEach((input)=>{
-                const val = Number.parseInt(+input.value);
-                // console.log(val);
-                if (!Number.isInteger(val) || !input.value) {
-                    input.classList.add("invalid");
-                    input.nextElementSibling.textContent = this._errorMessage;
-                    birthday[input.name] = null;
-                } else {
-                    birthday[input.name] = val;
-                    input.classList.remove("invalid");
-                }
-            });
-            if (Object.values(birthday).includes(null)) return;
-            handlerFunction(birthday);
+            this._ageInputs.forEach(this._checkInputs.bind(this));
+            if (Object.values(this._birthday).includes(null)) return;
+            handlerFunction(this._birthday);
         });
     }
-    displayAge() {
-        clearInputs();
-        _yearsResult.textContent = realAge.years;
-        _monthsResult.textContent = realAge.months;
-        _daysResult.textContent = realAge.days;
+    _checkInputs(input) {
+        const val = Number.parseInt(+input.value);
+        // console.log(val);
+        if (!Number.isInteger(val) || !input.value) {
+            input.classList.add("invalid");
+            input.nextElementSibling.textContent = this._errorMessage;
+            this._birthday[input.name] = null;
+        } else {
+            this._birthday[input.name] = val;
+            input.classList.remove("invalid");
+        }
+    }
+    _clearInputs() {
+        this._ageInputs.forEach((input)=>input.value = "");
+    }
+    displayAge(ageObj) {
+        this._clearInputs();
+        _yearsResult.textContent = ageObj.years;
+        _monthsResult.textContent = ageObj.months;
+        _daysResult.textContent = ageObj.days;
     }
     renderError() {}
-    _clearInputs() {
-        _ageInputs.forEach((input)=>input.value = "");
-    // document
-    //   .querySelectorAll(".error-message")
-    //   .forEach((input) => (input.style.display = "none"));
-    }
 }
 exports.default = new CalculatorView();
 
