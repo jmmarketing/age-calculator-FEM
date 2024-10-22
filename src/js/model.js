@@ -43,25 +43,6 @@ export const state = {
   },
 };
 
-// const rawToday = {
-//   year: rawDate.getFullYear(),
-//   month: rawDate.getMonth() + 1,
-//   day: rawDate.getDate(),
-//   ms: Date.now(),
-// };
-
-// const birthday = {
-//   year: null,
-//   month: null,
-//   day: null,
-// };
-
-// let realAge = {
-//   years: null,
-//   months: null,
-//   days: null,
-// };
-
 // END DATE MODEL
 
 export function calculateAge() {
@@ -84,47 +65,40 @@ export function calculateAge() {
 
   const days = differenceInDays(today, lastMonthBirthday);
 
-  console.log(today);
-  console.log(lastMonthBirthday);
-  console.log(days);
-
-  console.log(state.age);
+  // console.log(today);
+  // console.log(lastMonthBirthday);
+  // console.log(days);
+  // console.log(state.age);
 
   state.age = { years, months, days };
 }
 
-export function validateInputs() {
+export function validateInputs(birthdateObject) {
+  state.birthdate = birthdateObject;
+  const { day, month, year } = birthdateObject;
+
+  // console.log("state.birthdate ----- 👇🏽");
+  // console.log(state.birthdate);
+  // console.log(`${month}/${day}/${year}`);
   // Second pass of validation is field specific, but some requires other field info (like days for days in month validation)
-  if (birthday.year > rawToday.year) {
-    yearInput.classList.add("invalid");
-    yearInput.nextElementSibling.textContent = "Must be in the past";
-    birthday.year = null;
-    return;
+  if (year > state.today.year) {
+    return ["year", "Must be in the past"];
   }
 
-  if (birthday.month < 1 || birthday.month > 12) {
-    monthInput.classList.add("invalid");
-    monthInput.nextElementSibling.textContent = "Must be a valid month";
-    birthday.month = null;
-    return;
+  if (month < 1 || month > 12) {
+    return ["month", "Must be valid month"];
   }
 
-  if (birthday.day <= 0 || birthday.day > daysOfMonth.get(birthday.month)) {
-    ageInputs.forEach((input) => input.classList.add("invalid"));
-    dayInput.nextElementSibling.textContent = "Must be a valid date";
-    monthInput.nextElementSibling.textContent = "";
-    yearInput.nextElementSibling.textContent = "";
-    birthday.day = null;
-    return;
+  if (day <= 0 || day > daysOfMonth.get(month)) {
+    return ["day", "Must be valid date", true];
   }
 
   if (
     !isBefore(
-      `${birthday.year}/${birthday.month}/${birthday.day}`,
-      `${rawToday.year}/${rawToday.month}/${rawToday.day}`
+      `${year}/${month}/${day}`,
+      `${state.today.year}/${state.today.month}/${state.today.day}`
     )
   ) {
-    ageInputs.forEach((input) => input.classList.add("invalid"));
-    // return;
+    return ["day", "Must be valid date", true];
   }
 }

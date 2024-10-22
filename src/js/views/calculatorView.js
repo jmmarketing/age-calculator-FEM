@@ -1,8 +1,8 @@
 class CalculatorView {
   _submitButton = document.querySelector(".calculator__divider--icon");
-  _dayInput = document.querySelector("#day");
-  _monthInput = document.querySelector("#month");
-  _yearInput = document.querySelector("#year");
+  // _dayInput = document.querySelector("#day");
+  // _monthInput = document.querySelector("#month");
+  // _yearInput = document.querySelector("#year");
   _ageInputs = document.querySelectorAll(".calculator__input");
   _yearsResult = document.querySelector("#years-number");
   _monthsResult = document.querySelector("#months-number");
@@ -48,7 +48,19 @@ class CalculatorView {
     _daysResult.textContent = ageObj.days;
   }
 
-  renderError() {}
+  renderError(inputName, message, all = false) {
+    const input = document.querySelector(`#${inputName}`);
+
+    if (all) {
+      this._ageInputs.forEach((input) => {
+        input.classList.add("invalid");
+        input.nextElementSibling.textContent = "";
+      });
+    }
+
+    input.classList.add("invalid");
+    input.nextElementSibling.textContent = message;
+  }
 }
 
 export default new CalculatorView();
