@@ -1,8 +1,5 @@
 class CalculatorView {
   _submitButton = document.querySelector(".calculator__divider--icon");
-  // _dayInput = document.querySelector("#day");
-  // _monthInput = document.querySelector("#month");
-  // _yearInput = document.querySelector("#year");
   _ageInputs = document.querySelectorAll(".calculator__input");
   _yearsResult = document.querySelector("#years-number");
   _monthsResult = document.querySelector("#months-number");
@@ -43,9 +40,9 @@ class CalculatorView {
 
   displayAge(ageObj) {
     this._clearInputs();
-    _yearsResult.textContent = ageObj.years;
-    _monthsResult.textContent = ageObj.months;
-    _daysResult.textContent = ageObj.days;
+    this._yearsResult.textContent = ageObj.years;
+    this._monthsResult.textContent = ageObj.months;
+    this._daysResult.textContent = ageObj.days;
   }
 
   renderError(inputName, message, all = false) {

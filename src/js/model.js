@@ -55,7 +55,7 @@ export function calculateAge() {
   let lastMonthBirthday;
 
   if (state.birthdate.day > state.today.day) {
-    console.log("This Fired");
+    // console.log("This Fired");
     lastMonthBirthday = `${state.today.year}-${state.today.month - 1}-${
       state.birthdate.day
     }`;
@@ -65,11 +65,6 @@ export function calculateAge() {
 
   const days = differenceInDays(today, lastMonthBirthday);
 
-  // console.log(today);
-  // console.log(lastMonthBirthday);
-  // console.log(days);
-  // console.log(state.age);
-
   state.age = { years, months, days };
 }
 
@@ -77,9 +72,6 @@ export function validateInputs(birthdateObject) {
   state.birthdate = birthdateObject;
   const { day, month, year } = birthdateObject;
 
-  // console.log("state.birthdate ----- 👇🏽");
-  // console.log(state.birthdate);
-  // console.log(`${month}/${day}/${year}`);
   // Second pass of validation is field specific, but some requires other field info (like days for days in month validation)
   if (year > state.today.year) {
     return ["year", "Must be in the past"];

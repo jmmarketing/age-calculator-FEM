@@ -592,13 +592,13 @@ var _calculatorViewJs = require("./views/calculatorView.js");
 var _calculatorViewJsDefault = parcelHelpers.interopDefault(_calculatorViewJs);
 function controlCalculator(birthdayObject) {
     const error = _modelJs.validateInputs(birthdayObject);
-    console.log(error);
+    // console.log(error);
     if (error) {
         (0, _calculatorViewJsDefault.default).renderError(...error);
         return;
     }
-// model.calculateAge();
-// calculatorView.displayAge(model.state.age);
+    _modelJs.calculateAge();
+    (0, _calculatorViewJsDefault.default).displayAge(_modelJs.state.age);
 }
 const init = function() {
     (0, _calculatorViewJsDefault.default).addHandlerSubmitAge(controlCalculator);
@@ -2526,15 +2526,10 @@ function calculateAge() {
     const years = (0, _dateFns.differenceInYears)(today, userBirthday);
     const months = (0, _dateFns.differenceInMonths)(today, userBirthday) % 12;
     let lastMonthBirthday;
-    if (state.birthdate.day > state.today.day) {
-        console.log("This Fired");
-        lastMonthBirthday = `${state.today.year}-${state.today.month - 1}-${state.birthdate.day}`;
-    } else lastMonthBirthday = `${state.today.year}-${state.today.month}-${state.birthdate.day}`;
+    if (state.birthdate.day > state.today.day) // console.log("This Fired");
+    lastMonthBirthday = `${state.today.year}-${state.today.month - 1}-${state.birthdate.day}`;
+    else lastMonthBirthday = `${state.today.year}-${state.today.month}-${state.birthdate.day}`;
     const days = (0, _dateFns.differenceInDays)(today, lastMonthBirthday);
-    // console.log(today);
-    // console.log(lastMonthBirthday);
-    // console.log(days);
-    // console.log(state.age);
     state.age = {
         years,
         months,
@@ -2544,9 +2539,6 @@ function calculateAge() {
 function validateInputs(birthdateObject) {
     state.birthdate = birthdateObject;
     const { day, month, year } = birthdateObject;
-    // console.log("state.birthdate ----- 👇🏽");
-    // console.log(state.birthdate);
-    // console.log(`${month}/${day}/${year}`);
     // Second pass of validation is field specific, but some requires other field info (like days for days in month validation)
     if (year > state.today.year) return [
         "year",
@@ -3818,9 +3810,6 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 class CalculatorView {
     _submitButton = document.querySelector(".calculator__divider--icon");
-    // _dayInput = document.querySelector("#day");
-    // _monthInput = document.querySelector("#month");
-    // _yearInput = document.querySelector("#year");
     _ageInputs = document.querySelectorAll(".calculator__input");
     _yearsResult = document.querySelector("#years-number");
     _monthsResult = document.querySelector("#months-number");
@@ -3854,9 +3843,9 @@ class CalculatorView {
     }
     displayAge(ageObj) {
         this._clearInputs();
-        _yearsResult.textContent = ageObj.years;
-        _monthsResult.textContent = ageObj.months;
-        _daysResult.textContent = ageObj.days;
+        this._yearsResult.textContent = ageObj.years;
+        this._monthsResult.textContent = ageObj.months;
+        this._daysResult.textContent = ageObj.days;
     }
     renderError(inputName, message, all = false) {
         const input = document.querySelector(`#${inputName}`);
